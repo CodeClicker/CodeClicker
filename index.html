@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Code Clicker</title>
+        <link href=".\main.css" type="text/css" rel="stylesheet">
+    </head>
+    <body>
+        <div id="hideBox" onmouseover="hideDescription()"></div>
+        <div id="head">
+            <a href="#top">Top</a>
+            <a href="#clicker">Clicker</a>
+            <a href="#bottom">Bottom</a>
+        </div>
+        <a id="top"></a>
+        <h1 id="welcome">Code Clicker</h1>
+        <p id="intro">Your goal in life is to write the ultimate program. Armed with nothing but a pencil 
+            and paper, you set out to accomplish this mission. Click the button or press the spacebar to 
+            write lines of code. Use lines to recruit helpers that write more lines. Upgrades for each unit unlock
+            at 10, 25, 50, and 100 of each and click upgrades unlock after you have clicked enough times. Crank some code!
+        </p>
+        <div id="clicker">
+            <br>
+            <br>
+            <br>
+            <br>
+            <button type="button" id="save" onclick="save()">Save</button>
+            <button type="button" id="reset" onclick="reset()">Reset</button>
+            <p id="saveText" style="visibility: hidden">Game Saved!</p>
+            <br></br>
+            <script src="script.js"></script>
+            <h2>Lines:</h2>
+            <p id="lines">0</p>
+            <p id="lpcLabel" style="visibility: hidden; margin-left: 10px;">+</p>
+            <p id="lpc" style="visibility: hidden">1</p>
+            <p id="lps" style="visibility: hidden; margin-left: 20px">0</p>
+            <p id="lpsLabel" style="visibility: hidden">Lps</p>
+            <br>
+            <button type="button" onclick="linesUp(3.5)" id="linesUp">Crank!</button>
+            <br></br>
+
+            <div id="intern" class="auto" onmouseover="showIntern()" onmouseout="hideDescription()">
+                <p>Interns:</p>
+                <p id="interns" >0</p>
+                <br>
+                <button type="button" disabled id="internsUp"  onclick="internsUp()">Buy</button>
+                <span>Cost:</span>
+                <p class="cost" id="internCost">10</p>
+            </div>
+            <br></br>
+            
+            <div class="hide" onmouseover="hideDescription()"></div>
+
+            <div id="programmer" class="auto" onmouseover="showProgrammer()" onmouseout="hideDescription()">
+                <p>Programmers:</p>
+                <p id="programmers" >0</p>
+                <br>
+                <button type="button" disabled id="programmersUp" onclick="programmersUp()">Buy</button>
+                <span>Cost:</span>
+                <p class="cost" id="programmerCost">100</p>
+            </div>
+            <br></br>
+            
+            <div class="hide" onmouseover="hideDescription()"></div>
+
+            <div id="hacker" class="auto" onmouseover="showHacker()" onmouseout="hideDescription()">
+                <p>Hackers:</p>
+                <p id="hackers" >0</p>
+                <br>
+                <button type="button" disabled id="hackersUp" onclick="hackersUp()">Buy</button>
+                <span>Cost:</span>
+                <p class="cost" id="hackerCost">2000</p>
+            </div>
+            <br></br>
+            <div class="hide" onmouseover="hideDescription()"></div>
+
+            <div id="oracle" class="auto" onmouseover="showOracle()" onmouseout="hideDescription()">
+                <p>Oracles:</p>
+                <p id="oracles" >0</p>
+                <br>
+                <button type="button" disabled id="oraclesUp" onclick="oraclesUp()">Buy</button>
+                <span>Cost:</span>
+                <p class="cost" id="oracleCost">15000</p>
+            </div>
+            <br></br>
+
+            <div class="hide" onmouseover="hideDescription()"></div>
+
+            <div id="robot" class="auto" onmouseover="showRobot()" onmouseout="hideDescription()">
+                <p>Artificial Intelligence:</p>
+                <p id="robots" >0</p>
+                <br>
+                <button type="button" disabled id="robotsUp" onclick="robotsUp()">Buy</button>
+                <span>Cost:</span>
+                <p class="cost" id="robotCost">100000</p>
+            </div>
+            <br>
+            
+            <!--Upgrades-->
+            <div id="upgrades">
+                <h2 style="margin-bottom: 10px;">Upgrades:</h2>
+            </div>
+
+            <!--Descriptions-->
+            <div id="desc">
+                 <h2>Description:</h2>
+                <p style="visibility: hidden" id="description">yeet</p>
+            </div>
+        </div>
+        <a id="bottom"></a>
+        <p style="visibility: hidden" id="clicks">0</p>
+    </body>
+</html>
