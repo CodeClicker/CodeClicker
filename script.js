@@ -15,10 +15,10 @@ function linesUp(num) {
         num = (1+clickNum()) * typewriter * keyboard * mechanical * eclipse * jgrasp;
     }
     lines += num;
-    document.getElementById("lines").innerHTML = Math.floor(lines);
+    document.getElementById("lines").innerHTML = displayNumber(Math.floor(lines));
     check();
 }
-//FIX LPC TO ACCOUNT FOR SCRATCH
+
 //clicks when spacebar is pressed
 let space = false;
 document.onkeydown = function(e) {
@@ -69,7 +69,29 @@ document.addEventListener('keydown', function() {
     });
   }
 
+//modifies numbers
+function displayNumber(num) {
+    if(num >= 1000000) {
+        let i = Math.floor(Math.log10(num));
+        i = Math.floor(i/3) * 3;
 
+        let word = "";
+        switch(i) {
+            case 6: word = "Million"; break;
+            case 9: word = "Billion"; break;
+            case 12: word = "Trillion"; break;
+            case 15: word = "Quadrillion"; break;
+            case 18: word = "Quintillion"; break;
+            case 21: word = "Sextillion"; break;
+            case 24: word = "Septillion"; break;
+            case 27: word = "Octillion"; break;
+            case 30: word = "Nonillion"; break;
+            case 33: word = "Decillion"; break;
+        }
+        return (num/(Math.pow(10, i))).toFixed(3) + " " + word;
+    }
+    return num;
+}
 
 //buys autoclickers
 
@@ -997,3 +1019,9 @@ function deleteCookies() {
     }
     document.location.reload();
 }
+
+
+//STUFF TO DO
+//Add more upgrades
+//Change large numbers
+//
