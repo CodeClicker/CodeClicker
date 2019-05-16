@@ -34,8 +34,8 @@ document.onkeydown = function(e) {
         linesUp(-1);
         document.getElementById("linesUp").disabled = true;
     }
-    else
-        linesUp(1000000);
+    //else
+    //    linesUp(1000000);
 }
 
 function clickNum() {
