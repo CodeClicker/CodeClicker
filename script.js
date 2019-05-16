@@ -724,7 +724,7 @@ function addUpgrade() {
         document.getElementById("scratch").appendChild(cost);
     }
     //intern upgrades
-    if(!document.getElementById("coffee") && coffee===1 && Number(document.getElementById("interns").innerHTML) >= 10) {
+    if(!document.getElementById("coffee") && coffee===1 && interns >= 10) {
         document.getElementById("upgrades").style.setProperty("visibility", "visible");
         let upgrade = document.createElement("div");
         upgrade.id = "coffee";
@@ -751,7 +751,7 @@ function addUpgrade() {
         document.getElementById("coffee").appendChild(costLabel);
         document.getElementById("coffee").appendChild(cost);
     }
-    if(!document.getElementById("college") && college===1 && Number(document.getElementById("interns").innerHTML) >= 25) {
+    if(!document.getElementById("college") && college===1 && interns >= 25) {
         document.getElementById("upgrades").style.setProperty("visibility", "visible");
         let upgrade = document.createElement("div");
         upgrade.id = "college";
@@ -778,7 +778,7 @@ function addUpgrade() {
         document.getElementById("college").appendChild(costLabel);
         document.getElementById("college").appendChild(cost);
     }
-    if(!document.getElementById("training") && training===1 && Number(document.getElementById("interns").innerHTML) >= 50) {
+    if(!document.getElementById("training") && training===1 && interns >= 50) {
         document.getElementById("upgrades").style.setProperty("visibility", "visible");
         let upgrade = document.createElement("div");
         upgrade.id = "training";
@@ -805,7 +805,7 @@ function addUpgrade() {
         document.getElementById("training").appendChild(costLabel);
         document.getElementById("training").appendChild(cost);
     }
-    if(!document.getElementById("paycheck2") && paycheck2===1 && Number(document.getElementById("interns").innerHTML) >= 100) {
+    if(!document.getElementById("paycheck2") && paycheck2===1 && interns >= 100) {
         document.getElementById("upgrades").style.setProperty("visibility", "visible");
         let upgrade = document.createElement("div");
         upgrade.id = "paycheck2";
@@ -833,7 +833,7 @@ function addUpgrade() {
         document.getElementById("paycheck2").appendChild(cost);
     }
     //programmer upgrades
-    if(!document.getElementById("paycheck") && paycheck===1 && Number(document.getElementById("programmers").innerHTML) >= 10) {
+    if(!document.getElementById("paycheck") && paycheck===1 && programmers >= 10) {
         document.getElementById("upgrades").style.setProperty("visibility", "visible");
         let upgrade = document.createElement("div");
         upgrade.id = "paycheck";
@@ -860,7 +860,7 @@ function addUpgrade() {
         document.getElementById("paycheck").appendChild(costLabel);
         document.getElementById("paycheck").appendChild(cost);
     }
-    if(!document.getElementById("office") && office===1 && Number(document.getElementById("programmers").innerHTML) >= 25) {
+    if(!document.getElementById("office") && office===1 && programmers >= 25) {
         document.getElementById("upgrades").style.setProperty("visibility", "visible");
         let upgrade = document.createElement("div");
         upgrade.id = "office";
@@ -888,7 +888,7 @@ function addUpgrade() {
         document.getElementById("office").appendChild(cost);
     }
     //hacker upgrades
-    if(!document.getElementById("goggles") && goggles===1 && Number(document.getElementById("hackers").innerHTML) >= 10) {
+    if(!document.getElementById("goggles") && goggles===1 && hackers >= 10) {
         document.getElementById("upgrades").style.setProperty("visibility", "visible");
         let upgrade = document.createElement("div");
         upgrade.id = "goggles";
@@ -915,7 +915,7 @@ function addUpgrade() {
         document.getElementById("goggles").appendChild(costLabel);
         document.getElementById("goggles").appendChild(cost);
     }
-    if(!document.getElementById("russian") && russian===1 && Number(document.getElementById("hackers").innerHTML) >= 25) {
+    if(!document.getElementById("russian") && russian===1 && hackers >= 25) {
         document.getElementById("upgrades").style.setProperty("visibility", "visible");
         let upgrade = document.createElement("div");
         upgrade.id = "russian";
@@ -941,6 +941,60 @@ function addUpgrade() {
         document.getElementById("russian").appendChild(button);
         document.getElementById("russian").appendChild(costLabel);
         document.getElementById("russian").appendChild(cost);
+    }
+    if(!document.getElementById("gloves") && gloves===1 && hackers >= 50) {
+        document.getElementById("upgrades").style.setProperty("visibility", "visible");
+        let upgrade = document.createElement("div");
+        upgrade.id = "gloves";
+        upgrade.onmouseover = showGloves;
+        upgrade.onmouseout = hideDescription;
+        let label = document.createElement("p");
+        label.innerHTML = "Hacker Gloves";
+        label.style.display = "inline";
+        let line = document.createElement("br");
+        let button = document.createElement("button");
+        button.innerHTML = "Buy";
+        button.id = "buyGloves";
+        button.disabled = true;
+        button.onclick = buyGloves;
+        let costLabel = document.createElement("span");
+        costLabel.innerHTML = "Cost:";
+        let cost = document.createElement("p");
+        cost.id = "glovesCost";
+        cost.innerHTML = "60000";
+        document.getElementById("upgrades").appendChild(upgrade);
+        document.getElementById("gloves").appendChild(label);
+        document.getElementById("gloves").appendChild(line);
+        document.getElementById("gloves").appendChild(button);
+        document.getElementById("gloves").appendChild(costLabel);
+        document.getElementById("gloves").appendChild(cost);
+    }
+    if(!document.getElementById("gloves") && gloves===1 && hackers >= 100) {
+        document.getElementById("upgrades").style.setProperty("visibility", "visible");
+        let upgrade = document.createElement("div");
+        upgrade.id = "gloves";
+        upgrade.onmouseover = showGloves;
+        upgrade.onmouseout = hideDescription;
+        let label = document.createElement("p");
+        label.innerHTML = "Hacker Gloves";
+        label.style.display = "inline";
+        let line = document.createElement("br");
+        let button = document.createElement("button");
+        button.innerHTML = "Buy";
+        button.id = "buyGloves";
+        button.disabled = true;
+        button.onclick = buyGloves;
+        let costLabel = document.createElement("span");
+        costLabel.innerHTML = "Cost:";
+        let cost = document.createElement("p");
+        cost.id = "glovesCost";
+        cost.innerHTML = "60000";
+        document.getElementById("upgrades").appendChild(upgrade);
+        document.getElementById("gloves").appendChild(label);
+        document.getElementById("gloves").appendChild(line);
+        document.getElementById("gloves").appendChild(button);
+        document.getElementById("gloves").appendChild(costLabel);
+        document.getElementById("gloves").appendChild(cost);
     }
 }
 
@@ -981,6 +1035,7 @@ function save() {
 window.onload = function () {
     if(getCookie("lines") != "") {
         lines = Number(getCookie("lines"));
+        document.getElementById("lines").innerHTML = displayNumber(lines);
         interns = Number(getCookie("interns"));
         document.getElementById("interns").innerHTML = displayNumber(interns);
         internCost = Math.round(10 * Math.pow(1.14, interns));
