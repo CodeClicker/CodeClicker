@@ -443,7 +443,7 @@ function yeet() {
 function cheat() {
     if(clicks-oldClicks >= 15) {
         alert("cheater");
-        cheat();
+        //cheat();
     }
     oldClicks=clicks;
 }
