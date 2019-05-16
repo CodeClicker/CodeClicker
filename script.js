@@ -34,8 +34,8 @@ document.onkeydown = function(e) {
         linesUp(3.5);
         document.getElementById("linesUp").disabled = true;
     }
-    //else
-    //    linesUp(1000000);
+    else
+        linesUp(1000000);
 }
 
 function clickNum() {
@@ -159,14 +159,14 @@ function robotsUp() {
 let typewriter = 1;
 function buyTypewriter() {
     typewriter = 2;
-    lines -= document.getElementById("typewriterCost").innerHTML;
+    lines -= 100;
     document.getElementById("upgrades").removeChild(document.getElementById("typewriter"));
     update();
 }
 let keyboard = 1;
 function buyKeyboard() {
     keyboard = 2;
-    lines -= document.getElementById("keyboardCost").innerHTML;
+    lines -= 600;
     document.getElementById("upgrades").removeChild(document.getElementById("keyboard"));
     update();
 }
@@ -174,7 +174,7 @@ function buyKeyboard() {
 let mechanical = 1;
 function buyMechanical() {
      mechanical = 3;
-     lines -= document.getElementById("mechanicalCost").innerHTML;
+     lines -= 25000;
      document.getElementById("upgrades").removeChild(document.getElementById("mechanical"));
      update();
 }
@@ -182,7 +182,7 @@ function buyMechanical() {
 let eclipse = 1;
 function buyEclipse() {
      eclipse = 5;
-     lines -= document.getElementById("eclipseCost").innerHTML;
+     lines -= 125000;
      document.getElementById("upgrades").removeChild(document.getElementById("eclipse"));
      update();
 }
@@ -190,7 +190,7 @@ function buyEclipse() {
 let jgrasp = 1;
 function buyJgrasp() {
      jgrasp = 10;
-     lines -= document.getElementById("jgraspCost").innerHTML;
+     lines -= 500000;
      document.getElementById("upgrades").removeChild(document.getElementById("jgrasp"));
      update();
 }
@@ -198,7 +198,7 @@ function buyJgrasp() {
 let scratch = false;
 function buyScratch() {
      scratch = true;
-     lines -= document.getElementById("scratchCost").innerHTML;
+     lines -= 2000000;
      document.getElementById("upgrades").removeChild(document.getElementById("scratch"));
      update();
 }
@@ -206,7 +206,7 @@ function buyScratch() {
 let coffee = 1;
 function buyCoffee() {
     coffee = 2;
-    lines -= document.getElementById("coffeeCost").innerHTML;
+    lines -= 200;
     document.getElementById("upgrades").removeChild(document.getElementById("coffee"));
     internDescription = "Interns: Interns need experience so they are willing to write code for you, but they aren't very good at it. Increases lines per second by " +  Number((0.1 * coffee * college * training * paycheck2).toFixed(1)) + ".";
     update();
@@ -215,7 +215,7 @@ function buyCoffee() {
 let college = 1;
 function buyCollege() {
     college = 3;
-    lines -= document.getElementById("collegeCost").innerHTML;
+    lines -= 1000;
     document.getElementById("upgrades").removeChild(document.getElementById("college"));
     internDescription = "Interns: Interns need experience so they are willing to write code for you, but they aren't very good at it. Increases lines per second by " +  Number((0.1 * coffee * college * training * paycheck2).toFixed(1)) + ".";
     update();
@@ -224,7 +224,7 @@ function buyCollege() {
 let training = 1;
 function buyTraining() {
     training = 5;
-    lines -= document.getElementById("trainingCost").innerHTML;
+    lines -= 50000;
     document.getElementById("upgrades").removeChild(document.getElementById("training"));
     internDescription = "Interns: Interns need experience so they are willing to write code for you, but they aren't very good at it. Increases lines per second by " +  Number((0.1 * coffee * college * training * paycheck2).toFixed(1)) + ".";
     update();
@@ -233,7 +233,7 @@ function buyTraining() {
 let paycheck2 = 1;
 function buyPaycheck2() {
     paycheck2 = 10;
-    lines -= document.getElementById("paycheck2Cost").innerHTML;
+    lines -= 10000000;
     document.getElementById("upgrades").removeChild(document.getElementById("paycheck2"));
     internDescription = "Interns: Interns need experience so they are willing to write code for you, but they aren't very good at it. Increases lines per second by " +  Number((0.1 * coffee * college * training * paycheck2).toFixed(1)) + ".";
     update();
@@ -243,7 +243,7 @@ function buyPaycheck2() {
 let paycheck = 1;
 function buyPaycheck() {
     paycheck = 2;
-    lines -= document.getElementById("paycheckCost").innerHTML;
+    lines -= 1750;
     document.getElementById("upgrades").removeChild(document.getElementById("paycheck"));
     programmerDescription = "Programmers: Programmers are reliable workers that can write code for you. Increases lines per second by " + 1 * paycheck * office + ".";
     update();
@@ -252,7 +252,7 @@ function buyPaycheck() {
 let office = 1;
 function buyOffice() {
     office = 2;
-    lines -= document.getElementById("officeCost").innerHTML;
+    lines -= 20000;
     document.getElementById("upgrades").removeChild(document.getElementById("office"));
     programmerDescription = "Programmers: Programmers are reliable workers that can write code for you. Increases lines per second by " + 1 * paycheck * office + ".";
     update();
@@ -262,7 +262,7 @@ function buyOffice() {
 let goggles = 1;
 function buyGoggles() {
     goggles = 2;
-    lines -= document.getElementById("gogglesCost").innerHTML;
+    lines -= 25000;
     document.getElementById("upgrades").removeChild(document.getElementById("goggles"));
     hackerDescription = "Hackers: Why would you ever write code when you can just steal it from others? Increases lines per seconds by " + 5 * goggles * russian * gloves + ".";
     update();
@@ -270,7 +270,7 @@ function buyGoggles() {
 let russian = 1;
 function buyRussian() {
     russian = 2;
-    lines -= document.getElementById("russianCost").innerHTML;
+    lines -= 130000;
     document.getElementById("upgrades").removeChild(document.getElementById("russian"));
     hackerDescription = "Hackers: Why would you ever write code when you can just steal it from others? Increases lines per seconds by " + 5 * goggles * russian * gloves + ".";
     update();
@@ -278,7 +278,7 @@ function buyRussian() {
 let gloves = 1;
 function buyGloves() {
     gloves = 3;
-    lines -= document.getElementById("glovesCost").innerHTML;
+    lines -= 1200000;
     document.getElementById("upgrades").removeChild(document.getElementById("gloves"));
     hackerDescription = "Hackers: Why would you ever write code when you can just steal it from others? Increases lines per seconds by " + 5 * goggles * russian * gloves + ".";
     update();
@@ -598,7 +598,7 @@ function addUpgrade() {
         costLabel.innerHTML = "Cost:";
         let cost = document.createElement("p");
         cost.id = "typewriterCost";
-        cost.innerHTML = "100";
+        cost.innerHTML = displayNumber(100);
         document.getElementById("upgrades").appendChild(upgrade);
         document.getElementById("typewriter").appendChild(label);
         document.getElementById("typewriter").appendChild(line);
@@ -625,7 +625,7 @@ function addUpgrade() {
         costLabel.innerHTML = "Cost:";
         let cost = document.createElement("p");
         cost.id = "keyboardCost";
-        cost.innerHTML = "600";
+        cost.innerHTML = displayNumber(600);
         document.getElementById("upgrades").appendChild(upgrade);
         document.getElementById("keyboard").appendChild(label);
         document.getElementById("keyboard").appendChild(line);
@@ -652,7 +652,7 @@ function addUpgrade() {
         costLabel.innerHTML = "Cost:";
         let cost = document.createElement("p");
         cost.id = "mechanicalCost";
-        cost.innerHTML = "25000";
+        cost.innerHTML = displayNumber(25000);
         document.getElementById("upgrades").appendChild(upgrade);
         document.getElementById("mechanical").appendChild(label);
         document.getElementById("mechanical").appendChild(line);
@@ -679,7 +679,7 @@ function addUpgrade() {
         costLabel.innerHTML = "Cost:";
         let cost = document.createElement("p");
         cost.id = "eclipseCost";
-        cost.innerHTML = "125000";
+        cost.innerHTML = displayNumber(125000);
         document.getElementById("upgrades").appendChild(upgrade);
         document.getElementById("eclipse").appendChild(label);
         document.getElementById("eclipse").appendChild(line);
@@ -706,7 +706,7 @@ function addUpgrade() {
         costLabel.innerHTML = "Cost:";
         let cost = document.createElement("p");
         cost.id = "jgraspCost";
-        cost.innerHTML = "500000";
+        cost.innerHTML = displayNumber(500000);
         document.getElementById("upgrades").appendChild(upgrade);
         document.getElementById("jgrasp").appendChild(label);
         document.getElementById("jgrasp").appendChild(line);
@@ -733,7 +733,7 @@ function addUpgrade() {
         costLabel.innerHTML = "Cost:";
         let cost = document.createElement("p");
         cost.id = "scratchCost";
-        cost.innerHTML = "2000000";
+        cost.innerHTML = displayNumber(2000000);
         document.getElementById("upgrades").appendChild(upgrade);
         document.getElementById("scratch").appendChild(label);
         document.getElementById("scratch").appendChild(line);
@@ -761,7 +761,7 @@ function addUpgrade() {
         costLabel.innerHTML = "Cost:";
         let cost = document.createElement("p");
         cost.id = "coffeeCost";
-        cost.innerHTML = "200";
+        cost.innerHTML = displayNumber(200);
         document.getElementById("upgrades").appendChild(upgrade);
         document.getElementById("coffee").appendChild(label);
         document.getElementById("coffee").appendChild(line);
@@ -788,7 +788,7 @@ function addUpgrade() {
         costLabel.innerHTML = "Cost:";
         let cost = document.createElement("p");
         cost.id = "collegeCost";
-        cost.innerHTML = "1000";
+        cost.innerHTML = displayNumber(1000);
         document.getElementById("upgrades").appendChild(upgrade);
         document.getElementById("college").appendChild(label);
         document.getElementById("college").appendChild(line);
@@ -815,7 +815,7 @@ function addUpgrade() {
         costLabel.innerHTML = "Cost:";
         let cost = document.createElement("p");
         cost.id = "trainingCost";
-        cost.innerHTML = "50000";
+        cost.innerHTML = displayNumber(50000);
         document.getElementById("upgrades").appendChild(upgrade);
         document.getElementById("training").appendChild(label);
         document.getElementById("training").appendChild(line);
@@ -842,7 +842,7 @@ function addUpgrade() {
         costLabel.innerHTML = "Cost:";
         let cost = document.createElement("p");
         cost.id = "paycheck2Cost";
-        cost.innerHTML = "10000000";
+        cost.innerHTML = displayNumber(10000000);
         document.getElementById("upgrades").appendChild(upgrade);
         document.getElementById("paycheck2").appendChild(label);
         document.getElementById("paycheck2").appendChild(line);
@@ -870,7 +870,7 @@ function addUpgrade() {
         costLabel.innerHTML = "Cost:";
         let cost = document.createElement("p");
         cost.id = "paycheckCost";
-        cost.innerHTML = "1750";
+        cost.innerHTML = displayNumber(1750);
         document.getElementById("upgrades").appendChild(upgrade);
         document.getElementById("paycheck").appendChild(label);
         document.getElementById("paycheck").appendChild(line);
@@ -897,7 +897,7 @@ function addUpgrade() {
         costLabel.innerHTML = "Cost:";
         let cost = document.createElement("p");
         cost.id = "officeCost";
-        cost.innerHTML = "20000";
+        cost.innerHTML = displayNumber(20000);
         document.getElementById("upgrades").appendChild(upgrade);
         document.getElementById("office").appendChild(label);
         document.getElementById("office").appendChild(line);
@@ -925,7 +925,7 @@ function addUpgrade() {
         costLabel.innerHTML = "Cost:";
         let cost = document.createElement("p");
         cost.id = "gogglesCost";
-        cost.innerHTML = "25000";
+        cost.innerHTML = displayNumber(25000);
         document.getElementById("upgrades").appendChild(upgrade);
         document.getElementById("goggles").appendChild(label);
         document.getElementById("goggles").appendChild(line);
@@ -952,7 +952,7 @@ function addUpgrade() {
         costLabel.innerHTML = "Cost:";
         let cost = document.createElement("p");
         cost.id = "russianCost";
-        cost.innerHTML = "130000";
+        cost.innerHTML = displayNumber(130000);
         document.getElementById("upgrades").appendChild(upgrade);
         document.getElementById("russian").appendChild(label);
         document.getElementById("russian").appendChild(line);
@@ -979,7 +979,7 @@ function addUpgrade() {
         costLabel.innerHTML = "Cost:";
         let cost = document.createElement("p");
         cost.id = "glovesCost";
-        cost.innerHTML = "1200000";
+        cost.innerHTML = displayNumber(1200000);
         document.getElementById("upgrades").appendChild(upgrade);
         document.getElementById("gloves").appendChild(label);
         document.getElementById("gloves").appendChild(line);
