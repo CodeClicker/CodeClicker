@@ -1012,6 +1012,7 @@ function save() {
     document.cookie = "oracles=" + oracles +"; expires=" + d.toUTCString() +";";
     document.cookie = "robots=" + robots +"; expires=" + d.toUTCString() +";";
     document.cookie = "clicks=" + clicks +"; expires=" + d.toUTCString() + ";";
+    document.cookie = "oldClicks=" + oldClicks +"; expires=" + d.toUTCString() + ";";
     document.cookie = "typewriter=" + typewriter +"; expires=" + d.toUTCString() + ";";
     document.cookie = "keyboard=" + keyboard +"; expires=" + d.toUTCString() + ";";
     document.cookie = "mechanical=" + mechanical +"; expires=" + d.toUTCString() + ";";
@@ -1058,6 +1059,7 @@ window.onload = function () {
         robotCost = Math.round(100000 * Math.pow(1.05, robots));
         document.getElementById("robotCost").innerHTML = displayNumber(robotCost);
         clicks = Number(getCookie("clicks"));
+        oldClicks = Number(getCookie("oldClicks"));
         typewriter = Number(getCookie("typewriter"));
         keyboard = Number(getCookie("keyboard"));
         mechanical = Number(getCookie("mechanical"));
