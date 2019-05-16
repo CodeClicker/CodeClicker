@@ -426,7 +426,7 @@ function update() {
     document.getElementById("lps").innerHTML = displayNumber(Number(inc.toFixed(5)));
 
     //shows lpc
-    document.getElementById("lpc").innerHTML = displayNumber(1 * typewriter * keyboard * mechanical * eclipse * jgrasp + clickNum());
+    document.getElementById("lpc").innerHTML = displayNumber((1 * typewriter * keyboard * mechanical * eclipse * jgrasp + clickNum()).toFixed(3));
     //sets recurring action on timer
     d1 = new Date();
     timer = setInterval(yeet, 1);
@@ -441,8 +441,10 @@ function yeet() {
 }
 
 function cheat() {
-    if(clicks-oldClicks >= 15)
+    if(clicks-oldClicks >= 15) {
         alert("cheater");
+        cheat();
+    }
     oldClicks=clicks;
 }
 //checks values to make changes
