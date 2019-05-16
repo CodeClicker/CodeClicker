@@ -430,7 +430,7 @@ function update() {
     //sets recurring action on timer
     d1 = new Date();
     timer = setInterval(yeet, 1);
-    //setInterval(cheat, 1000);
+    setInterval(cheat, 1000);
 }
 
 function yeet() {
@@ -440,11 +440,11 @@ function yeet() {
     d1 = new Date();
 }
 
-/*function cheat() {
+function cheat() {
     if(clicks-oldClicks >= 15)
         alert("cheater");
     oldClicks=clicks;
-}*/
+}
 //checks values to make changes
 
 function check() {
