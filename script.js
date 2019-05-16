@@ -1,6 +1,7 @@
 //increments lines
 let lines = 0;
 let clicks = 0;
+let oldClicks = clicks;
 let interns = 0;
 let programmers = 0;
 let hackers = 0;
@@ -428,7 +429,7 @@ function update() {
     //sets recurring action on timer
     d1 = new Date();
     timer = setInterval(yeet, 1);
-    //setInterval(cheat, 1000);
+    setInterval(cheat, 1000);
 }
 
 function yeet() {
@@ -439,8 +440,8 @@ function yeet() {
 }
 
 function cheat() {
-    if(clicks-oldClicks >= 15) {
-        //alert("cheater");
+    if(clicks-oldClicks >=  15) {
+        alert("Cheater");
         //cheat();
     }
     oldClicks=clicks;
@@ -1056,7 +1057,7 @@ window.onload = function () {
         robotCost = Math.round(100000 * Math.pow(1.05, robots));
         document.getElementById("robotCost").innerHTML = displayNumber(robotCost);
         clicks = Number(getCookie("clicks"));
-        let oldClicks = clicks;
+        oldClicks = clicks;
         typewriter = Number(getCookie("typewriter"));
         keyboard = Number(getCookie("keyboard"));
         mechanical = Number(getCookie("mechanical"));
