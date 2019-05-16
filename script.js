@@ -1,5 +1,6 @@
 //increments lines
 let lines = 0;
+let oldClicks = 0;
 let clicks = 0;
 let interns = 0;
 let programmers = 0;
@@ -8,7 +9,7 @@ let oracles = 0;
 let robots = 0;
 
 function linesUp(num) {
-    if(num===3.5) {
+    if(num===-1) {
         document.getElementById("linesUp").disabled = true;
         clicks++;
         document.getElementById("lpcLabel").style.setProperty("visibility", "visible");
@@ -31,11 +32,11 @@ document.onkeydown = function(e) {
     event.preventDefault();
     if(e.keyCode == 32 && space == false) {
         space = true;
-        linesUp(3.5);
+        linesUp(-1);
         document.getElementById("linesUp").disabled = true;
     }
-    //else
-    //    linesUp(1000000);
+    else
+        linesUp(1000000);
 }
 
 function clickNum() {
@@ -429,6 +430,7 @@ function update() {
     //sets recurring action on timer
     d1 = new Date();
     timer = setInterval(yeet, 1);
+    //setInterval(cheat, 1000);
 }
 
 function yeet() {
@@ -438,6 +440,11 @@ function yeet() {
     d1 = new Date();
 }
 
+/*function cheat() {
+    if(clicks-oldClicks >= 15)
+        alert("cheater");
+    oldClicks=clicks;
+}*/
 //checks values to make changes
 
 function check() {
@@ -1104,6 +1111,5 @@ function deleteCookies() {
 //highlight stuff when moused over
 //make ending
 //stop cheaters
-//Make large numbers apply to upgrades
 
 //If there is time, make autoautoclickerclicker?
