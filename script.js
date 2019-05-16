@@ -121,9 +121,10 @@ function programmersUp() {
     update();
 }
 
-let hackerCost = 2000;;
+let hackerCost = 2000;
 function hackersUp() {
     hackers++;
+    //alert(hackers * 5 * goggles * russian * gloves);
     lines -= hackerCost;
     hackerCost = Math.round(2000 * Math.pow(1.1, hackers));
     document.getElementById("hackers").innerHTML = displayNumber(hackers);
@@ -277,7 +278,7 @@ function buyRussian() {
 let gloves = 1;
 function buyGloves() {
     gloves = 3;
-    lines -= document.getElementById("russianCost").innerHTML;
+    lines -= document.getElementById("glovesCost").innerHTML;
     document.getElementById("upgrades").removeChild(document.getElementById("gloves"));
     hackerDescription = "Hackers: Why would you ever write code when you can just steal it from others? Increases lines per seconds by " + 5 * goggles * russian * gloves + ".";
     update();
@@ -799,7 +800,7 @@ function addUpgrade() {
         document.getElementById("upgrades").style.setProperty("visibility", "visible");
         let upgrade = document.createElement("div");
         upgrade.id = "training";
-        upgrade.onmouseover = showCollege;
+        upgrade.onmouseover = showTraining;
         upgrade.onmouseout = hideDescription;
         let label = document.createElement("p");
         label.innerHTML = "Training";
@@ -1016,6 +1017,7 @@ function save() {
     document.cookie = "office=" + office +"; expires=" + d.toUTCString() + ";";
     document.cookie = "goggles=" + goggles +"; expires=" + d.toUTCString() + ";";
     document.cookie = "russian=" + russian +"; expires=" + d.toUTCString() + ";";
+    document.cookie = "gloves=" + gloves +"; expires=" + d.toUTCString() + ";";
     document.getElementById("saveText").style.setProperty("visibility", "visible");
         setTimeout(() => {
             document.getElementById("saveText").style.setProperty("visibility", "hidden");
@@ -1031,13 +1033,13 @@ window.onload = function () {
         internCost = Math.round(10 * Math.pow(1.14, interns));
         document.getElementById("internCost").innerHTML = displayNumber(internCost);
         programmers = Number(getCookie("programmers"));
-        document.getElementById("programmers").innerHTML = displayNumber(interns);
+        document.getElementById("programmers").innerHTML = displayNumber(programmers);
         programmerCost = Math.round(100 * Math.pow(1.15, programmers));
-        document.getElementById("programmerCost").innerHTML = displayNumber(interns);
+        document.getElementById("programmerCost").innerHTML = displayNumber(programmerCost);
         hackers = Number(getCookie("hackers"));
-        document.getElementById("hackers").innerHTML = displayNumber(interns);
+        document.getElementById("hackers").innerHTML = displayNumber(hackers);
         hackerCost = Math.round(2000 * Math.pow(1.1, hackers));
-        document.getElementById("hackerCost").innerHTML = displayNumber(interns);
+        document.getElementById("hackerCost").innerHTML = displayNumber(hackerCost);
         oracles = Number(getCookie("oracles"));
         document.getElementById("oracles").innerHTML = displayNumber(oracles);
         oracleCost = Math.round(15000 * Math.pow(1.08, oracles));
@@ -1047,20 +1049,21 @@ window.onload = function () {
         robotCost = Math.round(100000 * Math.pow(1.05, robots));
         document.getElementById("robotCost").innerHTML = displayNumber(robotCost);
         clicks = Number(getCookie("clicks"));
-        typewriter = Number(getCookie("typewriter"))
-        keyboard = Number(getCookie("keyboard"))
-        mechanical = Number(getCookie("mechanical"))
-        eclipse = Number(getCookie("eclipse"))
-        jgrasp = Number(getCookie("jgrasp"))
+        typewriter = Number(getCookie("typewriter"));
+        keyboard = Number(getCookie("keyboard"));
+        mechanical = Number(getCookie("mechanical"));
+        eclipse = Number(getCookie("eclipse"));
+        jgrasp = Number(getCookie("jgrasp"));
         scratch = getCookie("scratch") === "true";
-        coffee = Number(getCookie("coffee"))
-        college = Number(getCookie("college"))
-        training = Number(getCookie("training"))
-        paycheck2 = Number(getCookie("paycheck2"))
-        paycheck = Number(getCookie("paycheck"))
-        office = Number(getCookie("office"))
-        goggles = Number(getCookie("goggles"))
-        russian = Number(getCookie("russian"))
+        coffee = Number(getCookie("coffee"));
+        college = Number(getCookie("college"));
+        training = Number(getCookie("training"));
+        paycheck2 = Number(getCookie("paycheck2"));
+        paycheck = Number(getCookie("paycheck"));
+        office = Number(getCookie("office"));
+        goggles = Number(getCookie("goggles"));
+        russian = Number(getCookie("russian"));
+        gloves = Number(getCookie("gloves"));
     }
     update();
 }
