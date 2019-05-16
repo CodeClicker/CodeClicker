@@ -35,7 +35,7 @@ document.onkeydown = function(e) {
         document.getElementById("linesUp").disabled = true;
     }
     //else
-    //    linesUp(100000);
+    //    linesUp(1000000);
 }
 
 function clickNum() {
@@ -263,7 +263,7 @@ function buyGoggles() {
     goggles = 2;
     lines -= document.getElementById("gogglesCost").innerHTML;
     document.getElementById("upgrades").removeChild(document.getElementById("goggles"));
-    hackerDescription = "Hackers: Why would you ever write code when you can just steal it from others? Increases lines per seconds by " + 5 * goggles * russian + ".";
+    hackerDescription = "Hackers: Why would you ever write code when you can just steal it from others? Increases lines per seconds by " + 5 * goggles * russian * gloves + ".";
     update();
 }
 let russian = 1;
@@ -271,10 +271,17 @@ function buyRussian() {
     russian = 2;
     lines -= document.getElementById("russianCost").innerHTML;
     document.getElementById("upgrades").removeChild(document.getElementById("russian"));
-    hackerDescription = "Hackers: Why would you ever write code when you can just steal it from others? Increases lines per seconds by " + 5 * goggles * russian + ".";
+    hackerDescription = "Hackers: Why would you ever write code when you can just steal it from others? Increases lines per seconds by " + 5 * goggles * russian * gloves + ".";
     update();
 }
-
+let gloves = 1;
+function buyGloves() {
+    gloves = 3;
+    lines -= document.getElementById("russianCost").innerHTML;
+    document.getElementById("upgrades").removeChild(document.getElementById("gloves"));
+    hackerDescription = "Hackers: Why would you ever write code when you can just steal it from others? Increases lines per seconds by " + 5 * goggles * russian * gloves + ".";
+    update();
+}
 
 //descriptions
 
@@ -300,8 +307,8 @@ let paycheckDescription  = "Paycheck: Did you really think you could buy program
 let officeDescription = "Office: The programmers will no longer have to work out of your living room. Doubles programmer efficiency.";
 
 let gogglesDescription = "Hacker Goggles: The most necessary piece of equipment for any hacker. Doubles hacker efficiency.";
-let russianDescription = "Russian Lessons: Working with the hackers would be a lot easier if you could speak russian. Вырасти шикарного картофеля товарищем! Doubles Hacker Efficiency."
-
+let russianDescription = "Russian Lessons: Working with the hackers would be a lot easier if you could speak their language. Вырасти шикарного картофеля товарищем! Doubles Hacker Efficiency."
+let glovesDescription = "Hacker Gloves: Complete the hacker look with some hacker gloves. Triples hacker efficieny."
 function showIntern() {
     document.getElementById("description").innerHTML = internDescription;
     document.getElementById("description").style.setProperty("visibility", "visible");
@@ -378,6 +385,10 @@ function showRussian() {
     document.getElementById("description").innerHTML = russianDescription;
     document.getElementById("description").style.setProperty("visibility", "visible");
 }
+function showGloves() {
+    document.getElementById("description").innerHTML = glovesDescription;
+    document.getElementById("description").style.setProperty("visibility", "visible");
+}
 function hideDescription() {
     document.getElementById("description").style.setProperty("visibility", "hidden");
 }
@@ -386,7 +397,7 @@ function hideDescription() {
 function getInc() {
     return interns * .1 * coffee * college * training * paycheck2 +
     programmers * 1 * paycheck * office +
-    hackers * 5 * goggles * russian +
+    hackers * 5 * goggles * russian * gloves +
     oracles * 35 +
     robots * 400;
 }
@@ -538,6 +549,12 @@ function check() {
             document.getElementById("buyRussian").disabled = true;
         else
             document.getElementById("buyRussian").disabled = false;
+    }
+    if(document.getElementById("gloves")) {
+        if(Number(lines) < Number(document.getElementById("glovesCost").innerHTML))
+            document.getElementById("buyGloves").disabled = true;
+        else
+            document.getElementById("buyGloves").disabled = false;
     }
 
     //checks to make new autos appear
@@ -797,7 +814,7 @@ function addUpgrade() {
         costLabel.innerHTML = "Cost:";
         let cost = document.createElement("p");
         cost.id = "trainingCost";
-        cost.innerHTML = "1000";
+        cost.innerHTML = "50000";
         document.getElementById("upgrades").appendChild(upgrade);
         document.getElementById("training").appendChild(label);
         document.getElementById("training").appendChild(line);
@@ -824,7 +841,7 @@ function addUpgrade() {
         costLabel.innerHTML = "Cost:";
         let cost = document.createElement("p");
         cost.id = "paycheck2Cost";
-        cost.innerHTML = "1000";
+        cost.innerHTML = "10000000";
         document.getElementById("upgrades").appendChild(upgrade);
         document.getElementById("paycheck2").appendChild(label);
         document.getElementById("paycheck2").appendChild(line);
@@ -852,7 +869,7 @@ function addUpgrade() {
         costLabel.innerHTML = "Cost:";
         let cost = document.createElement("p");
         cost.id = "paycheckCost";
-        cost.innerHTML = "1500";
+        cost.innerHTML = "1750";
         document.getElementById("upgrades").appendChild(upgrade);
         document.getElementById("paycheck").appendChild(label);
         document.getElementById("paycheck").appendChild(line);
@@ -879,7 +896,7 @@ function addUpgrade() {
         costLabel.innerHTML = "Cost:";
         let cost = document.createElement("p");
         cost.id = "officeCost";
-        cost.innerHTML = "10000";
+        cost.innerHTML = "20000";
         document.getElementById("upgrades").appendChild(upgrade);
         document.getElementById("office").appendChild(label);
         document.getElementById("office").appendChild(line);
@@ -907,7 +924,7 @@ function addUpgrade() {
         costLabel.innerHTML = "Cost:";
         let cost = document.createElement("p");
         cost.id = "gogglesCost";
-        cost.innerHTML = "50000";
+        cost.innerHTML = "25000";
         document.getElementById("upgrades").appendChild(upgrade);
         document.getElementById("goggles").appendChild(label);
         document.getElementById("goggles").appendChild(line);
@@ -934,7 +951,7 @@ function addUpgrade() {
         costLabel.innerHTML = "Cost:";
         let cost = document.createElement("p");
         cost.id = "russianCost";
-        cost.innerHTML = "10000";
+        cost.innerHTML = "130000";
         document.getElementById("upgrades").appendChild(upgrade);
         document.getElementById("russian").appendChild(label);
         document.getElementById("russian").appendChild(line);
@@ -961,34 +978,7 @@ function addUpgrade() {
         costLabel.innerHTML = "Cost:";
         let cost = document.createElement("p");
         cost.id = "glovesCost";
-        cost.innerHTML = "60000";
-        document.getElementById("upgrades").appendChild(upgrade);
-        document.getElementById("gloves").appendChild(label);
-        document.getElementById("gloves").appendChild(line);
-        document.getElementById("gloves").appendChild(button);
-        document.getElementById("gloves").appendChild(costLabel);
-        document.getElementById("gloves").appendChild(cost);
-    }
-    if(!document.getElementById("gloves") && gloves===1 && hackers >= 100) {
-        document.getElementById("upgrades").style.setProperty("visibility", "visible");
-        let upgrade = document.createElement("div");
-        upgrade.id = "gloves";
-        upgrade.onmouseover = showGloves;
-        upgrade.onmouseout = hideDescription;
-        let label = document.createElement("p");
-        label.innerHTML = "Hacker Gloves";
-        label.style.display = "inline";
-        let line = document.createElement("br");
-        let button = document.createElement("button");
-        button.innerHTML = "Buy";
-        button.id = "buyGloves";
-        button.disabled = true;
-        button.onclick = buyGloves;
-        let costLabel = document.createElement("span");
-        costLabel.innerHTML = "Cost:";
-        let cost = document.createElement("p");
-        cost.id = "glovesCost";
-        cost.innerHTML = "60000";
+        cost.innerHTML = "1200000";
         document.getElementById("upgrades").appendChild(upgrade);
         document.getElementById("gloves").appendChild(label);
         document.getElementById("gloves").appendChild(line);
@@ -1111,5 +1101,6 @@ function deleteCookies() {
 //highlight stuff when moused over
 //make ending
 //stop cheaters
+//Make large numbers apply to upgrades
 
 //If there is time, make autoautoclickerclicker?
