@@ -1,10 +1,16 @@
 //increments lines
 let lines = 0;
+let clicks = 0;
+let interns = 0;
+let programmers = 0;
+let hackers = 0;
+let oracles = 0;
+let robots = 0;
 
 function linesUp(num) {
     if(num===3.5) {
         document.getElementById("linesUp").disabled = true;
-        document.getElementById("clicks").innerHTML = Number(document.getElementById("clicks").innerHTML) + 1;
+        clicks++;
         document.getElementById("lpcLabel").style.setProperty("visibility", "visible");
         document.getElementById("lpc").style.setProperty("visibility", "visible");
         document.getElementById("linesUp").disabled = false;
@@ -12,7 +18,7 @@ function linesUp(num) {
             document.getElementById("lpcLabel").style.setProperty("visibility", "hidden");
             document.getElementById("lpc").style.setProperty("visibility", "hidden");
         }, 150);
-        num = (1+clickNum()) * typewriter * keyboard * mechanical * eclipse * jgrasp;
+        num = 1 * typewriter * keyboard * mechanical * eclipse * jgrasp + clickNum();
     }
     lines += num;
     document.getElementById("lines").innerHTML = displayNumber(Math.floor(lines));
@@ -34,7 +40,7 @@ document.onkeydown = function(e) {
 
 function clickNum() {
     if(scratch) {
-        return inc() * .01;
+        return getInc() * .01;
     }
     else {
         return 0;
@@ -95,38 +101,53 @@ function displayNumber(num) {
 
 //buys autoclickers
 
+let internCost = 10;
 function internsUp() {
-    document.getElementById("interns").innerHTML++;
-    lines -= document.getElementById("internCost").innerHTML;
-    document.getElementById("internCost").innerHTML = Math.round(10 * Math.pow(1.2, document.getElementById("interns").innerHTML));
+    interns++;
+    lines -= internCost;
+    internCost = Math.round(10 * Math.pow(1.14, interns));
+    document.getElementById("interns").innerHTML = displayNumber(interns);
+    document.getElementById("internCost").innerHTML = displayNumber(internCost);
     update();
 }
 
+let programmerCost = 100;
 function programmersUp() {
-    document.getElementById("programmers").innerHTML++;
-    lines -= document.getElementById("programmerCost").innerHTML;
-    document.getElementById("programmerCost").innerHTML = Math.round(100 * Math.pow(1.15, document.getElementById("programmers").innerHTML));
+    programmers++;
+    lines -= programmerCost;
+    programmerCost = Math.round(100 * Math.pow(1.15, programmers));
+    document.getElementById("programmers").innerHTML = displayNumber(programmers);
+    document.getElementById("programmerCost").innerHTML = displayNumber(programmerCost);
     update();
 }
 
+let hackerCost = 2000;;
 function hackersUp() {
-    document.getElementById("hackers").innerHTML++;
-    lines -= document.getElementById("hackerCost").innerHTML;
-    document.getElementById("hackerCost").innerHTML = Math.round(2000 * Math.pow(1.1, document.getElementById("hackers").innerHTML));
+    hackers++;
+    lines -= hackerCost;
+    hackerCost = Math.round(2000 * Math.pow(1.1, hackers));
+    document.getElementById("hackers").innerHTML = displayNumber(hackers);
+    document.getElementById("hackerCost").innerHTML = displayNumber(hackerCost);
     update();
 }
 
+let oracleCost = 15000;
 function oraclesUp() {
-    document.getElementById("oracles").innerHTML++;
-    lines -= document.getElementById("oracleCost").innerHTML;
-    document.getElementById("oracleCost").innerHTML = Math.round(15000 * Math.pow(1.08, document.getElementById("oracles").innerHTML));
+    oracles++;
+    lines -= oracleCost;
+    oracleCost = Math.round(15000 * Math.pow(1.08, oracles));
+    document.getElementById("oracles").innerHTML = displayNumber(oracles);
+    document.getElementById("oracleCost").innerHTML = displayNumber(oracleCost);
     update();
 }
 
+let robotCost = 100000;
 function robotsUp() {
-    document.getElementById("robots").innerHTML++;
-    lines -= document.getElementById("robotCost").innerHTML;
-    document.getElementById("robotCost").innerHTML = Math.round(100000 * Math.pow(1.05, document.getElementById("robots").innerHTML));
+    robots++;
+    lines -= robotCost;
+    robotCost = Math.round(100000 * Math.pow(1.05, robots));
+    document.getElementById("robots").innerHTML = displayNumber(robots);
+    document.getElementById("robotCost").innerHTML = displayNumber(robotCost);
     update();
 }
 
@@ -363,11 +384,11 @@ function hideDescription() {
 
 //gets lps
 function getInc() {
-    return Number(document.getElementById("interns").innerHTML) * .1 * coffee * college * training * paycheck2 +
-    Number(document.getElementById("programmers").innerHTML) * 1 * paycheck * office +
-    Number(document.getElementById("hackers").innerHTML) * 5 * goggles * russian +
-    Number(document.getElementById("oracles").innerHTML) * 35 +
-    Number(document.getElementById("robots").innerHTML) * 400;
+    return interns * .1 * coffee * college * training * paycheck2 +
+    programmers * 1 * paycheck * office +
+    hackers * 5 * goggles * russian +
+    oracles * 35 +
+    robots * 400;
 }
 
 //increments lines every second
@@ -389,10 +410,10 @@ function update() {
     document.getElementById("lps").style.setProperty("visibility", "visible");
     document.getElementById("lps").style.setProperty("margin-left", "20px");
     document.getElementById("lpsLabel").style.setProperty("visibility", "visible");
-    document.getElementById("lps").innerHTML = Number(inc.toFixed(5));
+    document.getElementById("lps").innerHTML = displayNumber(Number(inc.toFixed(5)));
 
     //shows lpc
-    document.getElementById("lpc").innerHTML = (1+ clickNum()) * typewriter * keyboard * mechanical * eclipse * jgrasp;
+    document.getElementById("lpc").innerHTML = displayNumber(1 * typewriter * keyboard * mechanical * eclipse * jgrasp + clickNum());
     //sets recurring action on timer
     d1 = new Date();
     timer = setInterval(yeet, 1);
@@ -410,25 +431,25 @@ function yeet() {
 function check() {
 
     //check to disable/enable auto buttons
-    if(Number(lines) < Number(document.getElementById("internCost").innerHTML))
+    if(lines < internCost)
         document.getElementById("internsUp").disabled = true;
     else
         document.getElementById("internsUp").disabled = false;
     
-    if(Number(lines) < Number(document.getElementById("programmerCost").innerHTML))
+    if(lines < programmerCost)
         document.getElementById("programmersUp").disabled = true;
     else
         document.getElementById("programmersUp").disabled = false;
     
-    if(Number(lines) < Number(document.getElementById("hackerCost").innerHTML))
+    if(lines < hackerCost)
         document.getElementById("hackersUp").disabled = true;
     else
         document.getElementById("hackersUp").disabled = false;
-    if(Number(lines) < Number(document.getElementById("oracleCost").innerHTML))
+    if(lines < oracleCost)
         document.getElementById("oraclesUp").disabled = true;
     else
         document.getElementById("oraclesUp").disabled = false;
-    if(Number(lines) < Number(document.getElementById("robotCost").innerHTML))
+    if(lines < robotCost)
         document.getElementById("robotsUp").disabled = true;
     else
         document.getElementById("robotsUp").disabled = false;
@@ -518,17 +539,17 @@ function check() {
         else
             document.getElementById("buyRussian").disabled = false;
     }
-    
+
     //checks to make new autos appear
-    if(Number(lines) >= 10 || document.getElementById("interns").innerHTML > 0)
+    if(lines >= 10 || interns > 0)
         document.getElementById("intern").style.setProperty("visibility", "visible");
-    if(Number(document.getElementById("interns").innerHTML) >= 5 || document.getElementById("programmers").innerHTML > 0)
+    if(interns >= 5 || programmers > 0)
         document.getElementById("programmer").style.setProperty("visibility", "visible");
-    if(Number(document.getElementById("programmers").innerHTML) >= 5 || document.getElementById("hackers").innerHTML > 0)
+    if(programmers >= 5 || hackers > 0)
         document.getElementById("hacker").style.setProperty("visibility", "visible");
-    if(Number(document.getElementById("hackers").innerHTML) >= 5 || document.getElementById("oracles").innerHTML > 0)
+    if(hackers >= 5 || oracles > 0)
         document.getElementById("oracle").style.setProperty("visibility", "visible");
-    if(Number(document.getElementById("oracles").innerHTML) >= 5 || document.getElementById("robots").innerHTML > 0)
+    if(oracles >= 5 || robots > 0)
         document.getElementById("robot").style.setProperty("visibility", "visible");
     //checks for upgrades to add and when to make upgrades appear
     addUpgrade();
@@ -540,7 +561,7 @@ function check() {
 
 function addUpgrade() {
     //click upgrades
-    if(!document.getElementById("typewriter") && typewriter===1 && Number(document.getElementById("clicks").innerHTML) >= 50) {
+    if(!document.getElementById("typewriter") && typewriter===1 && clicks >= 50) {
         document.getElementById("upgrades").style.setProperty("visibility", "visible");
         let upgrade = document.createElement("div");
         upgrade.id = "typewriter";
@@ -567,7 +588,7 @@ function addUpgrade() {
         document.getElementById("typewriter").appendChild(costLabel);
         document.getElementById("typewriter").appendChild(cost);
     }
-    if(!document.getElementById("keyboard") && keyboard===1 && Number(document.getElementById("clicks").innerHTML) >= 500) {
+    if(!document.getElementById("keyboard") && keyboard===1 && clicks >= 500) {
         document.getElementById("upgrades").style.setProperty("visibility", "visible");
         let upgrade = document.createElement("div");
         upgrade.id = "keyboard";
@@ -594,7 +615,7 @@ function addUpgrade() {
         document.getElementById("keyboard").appendChild(costLabel);
         document.getElementById("keyboard").appendChild(cost);
     }
-    if(!document.getElementById("mechanical") && mechanical===1 && Number(document.getElementById("clicks").innerHTML) >= 2000) {
+    if(!document.getElementById("mechanical") && mechanical===1 && clicks >= 2000) {
         document.getElementById("upgrades").style.setProperty("visibility", "visible");
         let upgrade = document.createElement("div");
         upgrade.id = "mechanical";
@@ -621,7 +642,7 @@ function addUpgrade() {
         document.getElementById("mechanical").appendChild(costLabel);
         document.getElementById("mechanical").appendChild(cost);
     }
-    if(!document.getElementById("eclipse") && eclipse===1 && Number(document.getElementById("clicks").innerHTML) >= 10000) {
+    if(!document.getElementById("eclipse") && eclipse===1 && clicks >= 10000) {
         document.getElementById("upgrades").style.setProperty("visibility", "visible");
         let upgrade = document.createElement("div");
         upgrade.id = "eclipse";
@@ -648,7 +669,7 @@ function addUpgrade() {
         document.getElementById("eclipse").appendChild(costLabel);
         document.getElementById("eclipse").appendChild(cost);
     }
-    if(!document.getElementById("jgrasp") && jgrasp===1 && Number(document.getElementById("clicks").innerHTML) >= 25000) {
+    if(!document.getElementById("jgrasp") && jgrasp===1 && clicks >= 25000) {
         document.getElementById("upgrades").style.setProperty("visibility", "visible");
         let upgrade = document.createElement("div");
         upgrade.id = "jgrasp";
@@ -675,7 +696,7 @@ function addUpgrade() {
         document.getElementById("jgrasp").appendChild(costLabel);
         document.getElementById("jgrasp").appendChild(cost);
     }
-    if(!document.getElementById("scratch") && scratch===false && Number(document.getElementById("clicks").innerHTML) >= 50000) {
+    if(!document.getElementById("scratch") && scratch===false && clicks >= 50000) {
         document.getElementById("upgrades").style.setProperty("visibility", "visible");
         let upgrade = document.createElement("div");
         upgrade.id = "scratch";
@@ -930,13 +951,13 @@ function addUpgrade() {
 function save() {
     let d = new Date;
     d.setTime(d.getTime() + (365*24*60*60*1000));
-    document.cookie = "lines=" + document.getElementById("lines").innerHTML +"; expires=" + d.toUTCString() +";";
-    document.cookie = "interns=" + document.getElementById("interns").innerHTML +"; expires=" + d.toUTCString() +";";
-    document.cookie = "programmers=" + document.getElementById("programmers").innerHTML +"; expires=" + d.toUTCString() +";";
-    document.cookie = "hackers=" + document.getElementById("hackers").innerHTML +"; expires=" + d.toUTCString() +";";
-    document.cookie = "oracles=" + document.getElementById("oracles").innerHTML +"; expires=" + d.toUTCString() +";";
-    document.cookie = "robots=" + document.getElementById("robots").innerHTML +"; expires=" + d.toUTCString() +";";
-    document.cookie = "clicks=" + document.getElementById("clicks").innerHTML +"; expires=" + d.toUTCString() + ";";
+    document.cookie = "lines=" + lines +"; expires=" + d.toUTCString() +";";
+    document.cookie = "interns=" + interns +"; expires=" + d.toUTCString() +";";
+    document.cookie = "programmers=" + programmers +"; expires=" + d.toUTCString() +";";
+    document.cookie = "hackers=" + hackers +"; expires=" + d.toUTCString() +";";
+    document.cookie = "oracles=" + oracles +"; expires=" + d.toUTCString() +";";
+    document.cookie = "robots=" + robots +"; expires=" + d.toUTCString() +";";
+    document.cookie = "clicks=" + clicks +"; expires=" + d.toUTCString() + ";";
     document.cookie = "typewriter=" + typewriter +"; expires=" + d.toUTCString() + ";";
     document.cookie = "keyboard=" + keyboard +"; expires=" + d.toUTCString() + ";";
     document.cookie = "mechanical=" + mechanical +"; expires=" + d.toUTCString() + ";";
@@ -960,18 +981,27 @@ function save() {
 window.onload = function () {
     if(getCookie("lines") != "") {
         lines = Number(getCookie("lines"));
-        document.getElementById("lines").innerHTML = Math.floor(lines);
-        document.getElementById("interns").innerHTML = Number(getCookie("interns"));
-        document.getElementById("internCost").innerHTML = Math.round(10 * Math.pow(1.2, document.getElementById("interns").innerHTML));
-        document.getElementById("programmers").innerHTML = Number(getCookie("programmers"));
-        document.getElementById("programmerCost").innerHTML = Math.round(100 * Math.pow(1.15, document.getElementById("programmers").innerHTML));
-        document.getElementById("hackers").innerHTML = Number(getCookie("hackers"));
-        document.getElementById("hackerCost").innerHTML = Math.round(2000 * Math.pow(1.1, document.getElementById("hackers").innerHTML));
-        document.getElementById("oracles").innerHTML = Number(getCookie("oracles"));
-        document.getElementById("oracleCost").innerHTML = Math.round(15000 * Math.pow(1.08, document.getElementById("oracles").innerHTML));
-        document.getElementById("robots").innerHTML = Number(getCookie("robots"));
-        document.getElementById("robotCost").innerHTML = Math.round(100000 * Math.pow(1.05, document.getElementById("robots").innerHTML));
-        document.getElementById("clicks").innerHTML = Number(getCookie("clicks"));
+        interns = Number(getCookie("interns"));
+        document.getElementById("interns").innerHTML = displayNumber(interns);
+        internCost = Math.round(10 * Math.pow(1.14, interns));
+        document.getElementById("internCost").innerHTML = displayNumber(internCost);
+        programmers = Number(getCookie("programmers"));
+        document.getElementById("programmers").innerHTML = displayNumber(interns);
+        programmerCost = Math.round(100 * Math.pow(1.15, programmers));
+        document.getElementById("programmerCost").innerHTML = displayNumber(interns);
+        hackers = Number(getCookie("hackers"));
+        document.getElementById("hackers").innerHTML = displayNumber(interns);
+        hackerCost = Math.round(2000 * Math.pow(1.1, hackers));
+        document.getElementById("hackerCost").innerHTML = displayNumber(interns);
+        oracles = Number(getCookie("oracles"));
+        document.getElementById("oracles").innerHTML = displayNumber(oracles);
+        oracleCost = Math.round(15000 * Math.pow(1.08, oracles));
+        document.getElementById("oracleCost").innerHTML = displayNumber(oracleCost);
+        robots = Number(getCookie("robots"));
+        document.getElementById("robots").innerHTML = displayNumber(robots);
+        robotCost = Math.round(100000 * Math.pow(1.05, robots));
+        document.getElementById("robotCost").innerHTML = displayNumber(robotCost);
+        clicks = Number(getCookie("clicks"));
         typewriter = Number(getCookie("typewriter"))
         keyboard = Number(getCookie("keyboard"))
         mechanical = Number(getCookie("mechanical"))
@@ -1023,5 +1053,8 @@ function deleteCookies() {
 
 //STUFF TO DO
 //Add more upgrades
-//Change large numbers
-//
+//highlight stuff when moused over
+//make ending
+//stop cheaters
+
+//If there is time, make autoautoclickerclicker?
