@@ -1,7 +1,6 @@
 //increments lines
 let lines = 0;
 let clicks = 0;
-let oldClicks = clicks;
 let interns = 0;
 let programmers = 0;
 let hackers = 0;
@@ -125,7 +124,6 @@ function programmersUp() {
 let hackerCost = 2000;
 function hackersUp() {
     hackers++;
-    //alert(hackers * 5 * goggles * russian * gloves);
     lines -= hackerCost;
     hackerCost = Math.round(2000 * Math.pow(1.1, hackers));
     document.getElementById("hackers").innerHTML = displayNumber(hackers);
@@ -442,7 +440,7 @@ function yeet() {
 
 function cheat() {
     if(clicks-oldClicks >= 15) {
-        alert("cheater");
+        //alert("cheater");
         //cheat();
     }
     oldClicks=clicks;
@@ -1058,6 +1056,7 @@ window.onload = function () {
         robotCost = Math.round(100000 * Math.pow(1.05, robots));
         document.getElementById("robotCost").innerHTML = displayNumber(robotCost);
         clicks = Number(getCookie("clicks"));
+        let oldClicks = clicks;
         typewriter = Number(getCookie("typewriter"));
         keyboard = Number(getCookie("keyboard"));
         mechanical = Number(getCookie("mechanical"));
