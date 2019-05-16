@@ -1063,7 +1063,8 @@ window.onload = function () {
         office = Number(getCookie("office"));
         goggles = Number(getCookie("goggles"));
         russian = Number(getCookie("russian"));
-        gloves = Number(getCookie("gloves"));
+        gloves = 1;
+        //gloves = Number(getCookie("gloves"));
     }
     update();
 }
