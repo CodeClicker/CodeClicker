@@ -326,7 +326,7 @@ let paycheck2Description = "Paycheck: Paying the programmers makes sense, but pa
 let paycheckDescription  = "Paycheck: Did you really think you could buy programmers with code? You have to pay them. Doubles programmer efficiency.";
 let officeDescription = "Office: The programmers will no longer have to work out of your living room. Doubles programmer efficiency.";
 let benefitsDescription = "Benefits: Life insurance, vacation days, and retirement bonuses. Maybe now your programmers will actually like their job. Multiplies programmer efficiency by 4.";
-let quantumDescription = "Quantum Computers: Add something later";
+let quantumDescription = "Quantum Computers: The fastest computers in existance for the fastest programmers in the office. Multiplies programmer efficiency by 10.";
 
 let gogglesDescription = "Hacker Goggles: The most necessary piece of equipment for any hacker. Doubles hacker efficiency.";
 let russianDescription = "Russian Lessons: Working with the hackers would be a lot easier if you could speak their language. Вырасти шикарного картофеля товарищем! Doubles Hacker Efficiency."
