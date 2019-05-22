@@ -125,6 +125,7 @@ function programmersUp() {
 let hackerCost = 2000;
 function hackersUp() {
     hackers++;
+    //alert(hackers * 5 * goggles * russian * gloves);
     lines -= hackerCost;
     hackerCost = Math.round(2000 * Math.pow(1.1, hackers));
     document.getElementById("hackers").innerHTML = displayNumber(hackers);
@@ -245,7 +246,7 @@ function buyPaycheck() {
     paycheck = 2;
     lines -= 1750;
     document.getElementById("upgrades").removeChild(document.getElementById("paycheck"));
-    programmerDescription = "Programmers: Programmers are reliable workers that can write code for you. Increases lines per second by " + 1 * paycheck * office + ".";
+    programmerDescription = "Programmers: Programmers are reliable workers that can write code for you. Increases lines per second by " + 1 * paycheck * office * benefits * quantum + ".";
     update();
 }
 
@@ -254,7 +255,25 @@ function buyOffice() {
     office = 2;
     lines -= 20000;
     document.getElementById("upgrades").removeChild(document.getElementById("office"));
-    programmerDescription = "Programmers: Programmers are reliable workers that can write code for you. Increases lines per second by " + 1 * paycheck * office + ".";
+    programmerDescription = "Programmers: Programmers are reliable workers that can write code for you. Increases lines per second by " + 1 * paycheck * office * benefits * quantum + ".";
+    update();
+}
+
+let benefits = 1;
+function buyOffice() {
+    benefits = 4;
+    lines -= 500000;
+    document.getElementById("upgrades").removeChild(document.getElementById("benefits"));
+    programmerDescription = "Programmers: Programmers are reliable workers that can write code for you. Increases lines per second by " + 1 * paycheck * office * benefits * quantum + ".";
+    update();
+}
+
+let quantum = 1;
+function buyOffice() {
+    quantum = 10;
+    lines -= 500000000;
+    document.getElementById("upgrades").removeChild(document.getElementById("quantum"));
+    programmerDescription = "Programmers: Programmers are reliable workers that can write code for you. Increases lines per second by " + 1 * paycheck * office * benefits * quantum + ".";
     update();
 }
 
@@ -285,7 +304,7 @@ function buyGloves() {
 }
 
 //descriptions
-
+//WRITE QUANTUM DESCRIPTION
 let internDescription = "Interns: Interns need experience so they are willing to write code for you, but they aren't very good at it. Increases lines per second by 0.1.";
 let programmerDescription = "Programmers: Programmers are reliable workers that can write code for you. Increases lines per second by 1.";
 let hackerDescription = "Hackers: Why would you ever write code when you can just steal it from others? Increases lines per seconds by 5.";
@@ -302,10 +321,12 @@ let scratchDescription = "The ultimate programming language. Adds 1% of your lin
 let coffeeDescription = "Coffee Machine: Having a coffee machine in the office saves the interns a lot of time because it dows most of their job for them. Doubles intern efficiency.";
 let collegeDescription = "College Credit: Interns aren't very productive when they're being paid in experience, but giving them college credit for their internship might actually make them work. Triples intern efficiency";
 let trainingDescription = "Training: As it turns out, interns can work much better when you teach them what they're supposed to do. Multiplies intern efficiency by 5.";
-let paycheck2Description = "Paycheck: Paying the programmers makes sense, but paying the interns? That's crazy. Mulyiplies programmer efficiency by 10.";
+let paycheck2Description = "Paycheck: Paying the programmers makes sense, but paying the interns? That's crazy. Multiplies programmer efficiency by 10.";
 
 let paycheckDescription  = "Paycheck: Did you really think you could buy programmers with code? You have to pay them. Doubles programmer efficiency.";
 let officeDescription = "Office: The programmers will no longer have to work out of your living room. Doubles programmer efficiency.";
+let benefitsDescription = "Benefits: Life insurance, vacation days, and retirement bonuses. Maybe now your programmers will actually like their job. Multiplies programmer efficiency by 4.";
+let quantumDescription = "Quantum Computers: Add something later";
 
 let gogglesDescription = "Hacker Goggles: The most necessary piece of equipment for any hacker. Doubles hacker efficiency.";
 let russianDescription = "Russian Lessons: Working with the hackers would be a lot easier if you could speak their language. Вырасти шикарного картофеля товарищем! Doubles Hacker Efficiency."
@@ -378,6 +399,14 @@ function showOffice() {
     document.getElementById("description").innerHTML = officeDescription;
     document.getElementById("description").style.setProperty("visibility", "visible");
 }
+function showBenefits() {
+    document.getElementById("description").innerHTML = benefitsDescription;
+    document.getElementById("description").style.setProperty("visibility", "visible");
+}
+function showQuantum() {
+    document.getElementById("description").innerHTML = quantumDescription;
+    document.getElementById("description").style.setProperty("visibility", "visible");
+}
 function showGoggles() {
     document.getElementById("description").innerHTML = gogglesDescription;
     document.getElementById("description").style.setProperty("visibility", "visible");
@@ -397,7 +426,7 @@ function hideDescription() {
 //gets lps
 function getInc() {
     return interns * .1 * coffee * college * training * paycheck2 +
-    programmers * 1 * paycheck * office +
+    programmers * 1 * paycheck * office * benefits * quantum +
     hackers * 5 * goggles * russian * gloves +
     oracles * 35 +
     robots * 400;
@@ -425,7 +454,7 @@ function update() {
     document.getElementById("lps").innerHTML = displayNumber(Number(inc.toFixed(5)));
 
     //shows lpc
-    document.getElementById("lpc").innerHTML = displayNumber((1 * typewriter * keyboard * mechanical * eclipse * jgrasp + clickNum()).toFixed(3));
+    document.getElementById("lpc").innerHTML = displayNumber(1 * typewriter * keyboard * mechanical * eclipse * jgrasp + clickNum());
     //sets recurring action on timer
     d1 = new Date();
     timer = setInterval(yeet, 1);
@@ -440,11 +469,10 @@ function yeet() {
 }
 
 function cheat() {
-    if(clicks-oldClicks >=  15) {
-        alert("Cheater");
-        //cheat();
+    if(clicks-oldClicks >= 15) {
+        alert("No one can click that fast!");
     }
-    oldClicks=clicks;
+    oldClicks = clicks;
 }
 //checks values to make changes
 
@@ -546,6 +574,18 @@ function check() {
             document.getElementById("buyOffice").disabled = true;
         else
             document.getElementById("buyOffice").disabled = false;
+    }
+    if(document.getElementById("benefits")) {
+        if(Number(lines) < Number(document.getElementById("benefitsCost").innerHTML))
+            document.getElementById("buyBenefits").disabled = true;
+        else
+            document.getElementById("buyBenefits").disabled = false;
+    }
+    if(document.getElementById("quantum")) {
+        if(Number(lines) < Number(document.getElementById("quantum").innerHTML))
+            document.getElementById("buyQuantum").disabled = true;
+        else
+            document.getElementById("buyQuantum").disabled = false;
     }
     if(document.getElementById("goggles")) {
         if(Number(lines) < Number(document.getElementById("gogglesCost").innerHTML))
@@ -913,6 +953,87 @@ function addUpgrade() {
         document.getElementById("office").appendChild(costLabel);
         document.getElementById("office").appendChild(cost);
     }
+    if(!document.getElementById("office") && office===1 && programmers >= 25) {
+        document.getElementById("upgrades").style.setProperty("visibility", "visible");
+        let upgrade = document.createElement("div");
+        upgrade.id = "office";
+        upgrade.onmouseover = showOffice;
+        upgrade.onmouseout = hideDescription;
+        let label = document.createElement("p");
+        label.innerHTML = "Office";
+        label.style.display = "inline";
+        let line = document.createElement("br");
+        let button = document.createElement("button");
+        button.innerHTML = "Buy";
+        button.id = "buyOffice";
+        button.disabled = true;
+        button.onclick = buyOffice;
+        let costLabel = document.createElement("span");
+        costLabel.innerHTML = "Cost:";
+        let cost = document.createElement("p");
+        cost.id = "officeCost";
+        cost.innerHTML = displayNumber(20000);
+        document.getElementById("upgrades").appendChild(upgrade);
+        document.getElementById("office").appendChild(label);
+        document.getElementById("office").appendChild(line);
+        document.getElementById("office").appendChild(button);
+        document.getElementById("office").appendChild(costLabel);
+        document.getElementById("office").appendChild(cost);
+    }
+    if(!document.getElementById("benefits") && benefits===1 && programmers >= 50) {
+        document.getElementById("upgrades").style.setProperty("visibility", "visible");
+        let upgrade = document.createElement("div");
+        upgrade.id = "benefits";
+        upgrade.onmouseover = showBenefits;
+        upgrade.onmouseout = hideDescription;
+        let label = document.createElement("p");
+        label.innerHTML = "Benefits";
+        label.style.display = "inline";
+        let line = document.createElement("br");
+        let button = document.createElement("button");
+        button.innerHTML = "Buy";
+        button.id = "buyBenefits";
+        button.disabled = true;
+        button.onclick = buyBenefits;
+        let costLabel = document.createElement("span");
+        costLabel.innerHTML = "Cost:";
+        let cost = document.createElement("p");
+        cost.id = "benefitsCost";
+        cost.innerHTML = displayNumber(500000);
+        document.getElementById("upgrades").appendChild(upgrade);
+        document.getElementById("benefits").appendChild(label);
+        document.getElementById("benefits").appendChild(line);
+        document.getElementById("benefits").appendChild(button);
+        document.getElementById("benefits").appendChild(costLabel);
+        document.getElementById("benefits").appendChild(cost);
+    }
+    if(!document.getElementById("quantum") && quantum===1 && programmers >= 100) {
+        document.getElementById("upgrades").style.setProperty("visibility", "visible");
+        let upgrade = document.createElement("div");
+        upgrade.id = "quantum";
+        upgrade.onmouseover = showQuantum;
+        upgrade.onmouseout = hideDescription;
+        let label = document.createElement("p");
+        label.innerHTML = "Quantum Computers";
+        label.style.display = "inline";
+        let line = document.createElement("br");
+        let button = document.createElement("button");
+        button.innerHTML = "Buy";
+        button.id = "buyQuantum";
+        button.disabled = true;
+        button.onclick = buyQuantum;
+        let costLabel = document.createElement("span");
+        costLabel.innerHTML = "Cost:";
+        let cost = document.createElement("p");
+        cost.id = "quantumCost";
+        cost.innerHTML = displayNumber(500000000);
+        document.getElementById("upgrades").appendChild(upgrade);
+        document.getElementById("quantum").appendChild(label);
+        document.getElementById("quantum").appendChild(line);
+        document.getElementById("quantum").appendChild(button);
+        document.getElementById("quantum").appendChild(costLabel);
+        document.getElementById("quantum").appendChild(cost);
+    }
     //hacker upgrades
     if(!document.getElementById("goggles") && goggles===1 && hackers >= 10) {
         document.getElementById("upgrades").style.setProperty("visibility", "visible");
@@ -1001,7 +1122,7 @@ function addUpgrade() {
 
 
 //cookie stuff
-function save() {
+function save(a) {
     let d = new Date;
     d.setTime(d.getTime() + (365*24*60*60*1000));
     document.cookie = "lines=" + lines +"; expires=" + d.toUTCString() +";";
@@ -1023,13 +1144,17 @@ function save() {
     document.cookie = "paycheck2=" + paycheck2 +"; expires=" + d.toUTCString() + ";";
     document.cookie = "paycheck=" + paycheck +"; expires=" + d.toUTCString() + ";";
     document.cookie = "office=" + office +"; expires=" + d.toUTCString() + ";";
+    document.cookie = "benefits=" + benefits +"; expires=" + d.toUTCString() + ";";
+    document.cookie = "quantum=" + quantum +"; expires=" + d.toUTCString() + ";";
     document.cookie = "goggles=" + goggles +"; expires=" + d.toUTCString() + ";";
     document.cookie = "russian=" + russian +"; expires=" + d.toUTCString() + ";";
     document.cookie = "gloves=" + gloves +"; expires=" + d.toUTCString() + ";";
-    document.getElementById("saveText").style.setProperty("visibility", "visible");
+    if(a === 1) {
+        document.getElementById("saveText").style.setProperty("visibility", "visible");
         setTimeout(() => {
             document.getElementById("saveText").style.setProperty("visibility", "hidden");
         }, 1500);
+    }
 }
 
 window.onload = function () {
@@ -1070,6 +1195,8 @@ window.onload = function () {
         paycheck2 = Number(getCookie("paycheck2"));
         paycheck = Number(getCookie("paycheck"));
         office = Number(getCookie("office"));
+        benefits = Number(getCookie("benefits"));
+        quantum = Number(getCookie("quantum"));
         goggles = Number(getCookie("goggles"));
         russian = Number(getCookie("russian"));
         gloves = Number(getCookie("gloves"));
@@ -1107,11 +1234,43 @@ function deleteCookies() {
     document.location.reload();
 }
 
+let mode = "light";
+//light/dark mode stuff
+function changeMode() {
+    if(mode === "light") {
+        mode = "dark";
+        dark();
+    }
+    else {
+        light();
+        mode = "light"
+    }
+}
+
+function dark() {
+    document.getElementsByTagName("body")[0].style.setProperty("background-image", "linear-gradient(blue, black 30%)");
+    let headers = document.getElementsByTagName("h2");
+    for(let i =0; i < headers.length; i++)
+        headers[i].style.setProperty("color", "green");
+    document.getElementById("desc").style.setProperty("border", "solid green 7px")
+    let text = document.getElementsByTagName("p");
+    for(let i =0; i < text.length; i++)
+        text[i].style.setProperty("color", "green");
+    let updates = document.getElementsByTagName("li");
+    for(let i = 0; i < updates.length; i++)
+        updates[i].style.setProperty("color","green");
+}
+
+function light() {
+    save(0);
+    document.location.reload();
+}
+
 
 //STUFF TO DO
 //Add more upgrades
 //highlight stuff when moused over
 //make ending
-//stop cheaters
+//dark mode
 
 //If there is time, make autoautoclickerclicker?
