@@ -23,9 +23,10 @@
             <br>
             <br>
             <br>
-            <button type="button" id="save" onclick="save()">Save</button>
+            <button type="button" id="save" onclick="save(1)">Save</button>
             <button type="button" id="reset" onclick="reset()">Reset</button>
             <p id="saveText" style="visibility: hidden">Game Saved!</p>
+            <input type="checkbox" onclick="changeMode()">Dark Mode</input>
             <br></br>
             <script src="script.js"></script>
             <h2>Lines:</h2>
@@ -108,15 +109,15 @@
         </div>
         <a id="bottom"></a>
         <h2>Update log:</h2>
-        <p>This is where I will put updates to the game.</p>
         <ul>
+            <li>v1.4: Made a dark mode for the site and added two new upgrades for programmers.</li>
             <li>v1.3.2: Stopped cheaters from using autoclickers.</li>
             <li>v1.3.1: Fixed the new upgrade and a glitch with the training upgrade description.</li>
             <li>v1.3: Adjusted upgrade pricing, added a new upgrade, and made upgrade costs abbreviated for large numbers.</li>
-            <li>v1.2.1: Fixed a bug involved with the scratch upgrade.</li>
+            <li>v1.2.1: Fixed a bug involved with the scratch upgrade</li>
             <li>v1.2: Abbreviations for large numbers now apply to every number in the game except for upgrade costs.</li>
-            <li>v1.1: When the number of lines gets large, they are now represented by abbreviations like Million, Billion, Trillion, etc. with 3 decimal points.</li>
-            <li>v1: The first release.</li>
+            <li>v1.1: When the number of lines gets large, they are now represented by abbreviations like Million, Billion, Trillion, etc. with 3 decimal points</li>
+            <li>v1: The first release</li>
         </ul>
     </body>
 </html>
