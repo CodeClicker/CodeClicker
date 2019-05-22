@@ -1240,6 +1240,7 @@ function changeMode() {
     if(mode === "light") {
         mode = "dark";
         dark();
+        document.getElementById("mode").innerHTML = "Light Mode";
     }
     else {
         light();
@@ -1247,18 +1248,20 @@ function changeMode() {
     }
 }
 
+let green = "rgb(48, 232, 64)";
 function dark() {
     document.getElementsByTagName("body")[0].style.setProperty("background-image", "linear-gradient(blue, black 30%)");
     let headers = document.getElementsByTagName("h2");
     for(let i =0; i < headers.length; i++)
-        headers[i].style.setProperty("color", "green");
-    document.getElementById("desc").style.setProperty("border", "solid green 7px")
+        headers[i].style.setProperty("color", green);
+    document.getElementById("desc").style.setProperty("border", "solid greenyellow 7px")
     let text = document.getElementsByTagName("p");
     for(let i =0; i < text.length; i++)
-        text[i].style.setProperty("color", "green");
+        text[i].style.setProperty("color", green);
     let updates = document.getElementsByTagName("li");
     for(let i = 0; i < updates.length; i++)
-        updates[i].style.setProperty("color","green");
+        updates[i].style.setProperty("color",green);
+    document.getElementById("mode").style.setProperty("color", green);
 }
 
 function light() {
