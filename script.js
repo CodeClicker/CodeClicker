@@ -35,8 +35,8 @@ document.onkeydown = function(e) {
         linesUp(-1);
         document.getElementById("linesUp").disabled = true;
     }
-    //else
-    //    linesUp(1000000);
+    else
+        linesUp(1000000);
 }
 
 function clickNum() {
@@ -116,7 +116,7 @@ let programmerCost = 100;
 function programmersUp() {
     programmers++;
     lines -= programmerCost;
-    programmerCost = Math.round(100 * Math.pow(1.15, programmers));
+    programmerCost = Math.round(100 * Math.pow(1.12, programmers));
     document.getElementById("programmers").innerHTML = displayNumber(programmers);
     document.getElementById("programmerCost").innerHTML = displayNumber(programmerCost);
     update();
@@ -125,7 +125,6 @@ function programmersUp() {
 let hackerCost = 2000;
 function hackersUp() {
     hackers++;
-    //alert(hackers * 5 * goggles * russian * gloves);
     lines -= hackerCost;
     hackerCost = Math.round(2000 * Math.pow(1.1, hackers));
     document.getElementById("hackers").innerHTML = displayNumber(hackers);
@@ -277,7 +276,7 @@ function buyQuantum() {
     update();
 }
 
-//hacker upgades
+//hacker upgrades
 let goggles = 1;
 function buyGoggles() {
     goggles = 2;
@@ -303,8 +302,40 @@ function buyGloves() {
     update();
 }
 
+//oracle upgrades
+let ball = 1;
+function buyBall() {
+    ball = 2;
+    lines -= 52000;
+    document.getElementById("upgrades").removeChild(document.getElementById("ball"));
+    oracleDescription = "Oracles: The oracles are mysterious people with ancient powers. They can gaze into the future and see code not yet written. Increases lines per second by " + 35 * ball * tarot * runes * tome + ".";
+    update();
+}
+let tarot = 1;
+function buyTarot() {
+    tarot = 2;
+    lines -= 700000;
+    document.getElementById("upgrades").removeChild(document.getElementById("tarot"));
+    oracleDescription = "Oracles: The oracles are mysterious people with ancient powers. They can gaze into the future and see code not yet written. Increases lines per second by " + 35 * ball * tarot * runes * tome + ".";
+    update();
+}
+let runes = 1;
+function buyRunes() {
+    runes = 3;
+    lines -= 2900000;
+    document.getElementById("upgrades").removeChild(document.getElementById("runes"));
+    oracleDescription = "Oracles: The oracles are mysterious people with ancient powers. They can gaze into the future and see code not yet written. Increases lines per second by " + 35 * ball * tarot * runes * tome + ".";
+    update();
+}
+let tome = 1;
+function buyTome() {
+    tome = 5;
+    lines -= 200000000;
+    document.getElementById("upgrades").removeChild(document.getElementById("tome"));
+    oracleDescription = "Oracles: The oracles are mysterious people with ancient powers. They can gaze into the future and see code not yet written. Increases lines per second by " + 35 * ball * tarot * runes * tome + ".";
+    update();
+}
 //descriptions
-//WRITE QUANTUM DESCRIPTION
 let internDescription = "Interns: Interns need experience so they are willing to write code for you, but they aren't very good at it. Increases lines per second by 0.1.";
 let programmerDescription = "Programmers: Programmers are reliable workers that can write code for you. Increases lines per second by 1.";
 let hackerDescription = "Hackers: Why would you ever write code when you can just steal it from others? Increases lines per seconds by 5.";
@@ -330,7 +361,13 @@ let quantumDescription = "Quantum Computers: The fastest computers in existance 
 
 let gogglesDescription = "Hacker Goggles: The most necessary piece of equipment for any hacker. Doubles hacker efficiency.";
 let russianDescription = "Russian Lessons: Working with the hackers would be a lot easier if you could speak their language. Вырасти шикарного картофеля товарищем! Doubles Hacker Efficiency."
-let glovesDescription = "Hacker Gloves: Complete the hacker look with some hacker gloves. Triples hacker efficieny."
+let glovesDescription = "Hacker Gloves: Complete the hacker look with some hacker gloves. Triples hacker efficieny.";
+
+let ballDescription = "Crystal Ball: A shiny ball that is used to gaze into the future. Doubles oracle efficiency.";
+let tarotDescription = "Tarot Cards: These cards aren't for playing with, they can predict someone's future. Doubles oracle efficiency.";
+let runesDescription = "Runes: Like the tarot cards, these nordic runes give the user knowledge of their future. Triple oracle efficiency.";
+let tomeDescription = "Ancient Tome: This tome, found in the ruins of a lost civilization, has some of the most powerful future-telling magic ever made. Multiplies oracle efficiency by 5.";
+
 function showIntern() {
     document.getElementById("description").innerHTML = internDescription;
     document.getElementById("description").style.setProperty("visibility", "visible");
@@ -419,6 +456,22 @@ function showGloves() {
     document.getElementById("description").innerHTML = glovesDescription;
     document.getElementById("description").style.setProperty("visibility", "visible");
 }
+function showBall() {
+    document.getElementById("description").innerHTML = ballDescription;
+    document.getElementById("description").style.setProperty("visibility", "visible");
+}
+function showTarot() {
+    document.getElementById("description").innerHTML = tarotDescription;
+    document.getElementById("description").style.setProperty("visibility", "visible");
+}
+function showRunes() {
+    document.getElementById("description").innerHTML = runesDescription;
+    document.getElementById("description").style.setProperty("visibility", "visible");
+}
+function showTome() {
+    document.getElementById("description").innerHTML = tomeDescription;
+    document.getElementById("description").style.setProperty("visibility", "visible");
+}
 function hideDescription() {
     document.getElementById("description").style.setProperty("visibility", "hidden");
 }
@@ -428,7 +481,7 @@ function getInc() {
     return interns * .1 * coffee * college * training * paycheck2 +
     programmers * 1 * paycheck * office * benefits * quantum +
     hackers * 5 * goggles * russian * gloves +
-    oracles * 35 +
+    oracles * 35 * ball * tarot * runes * tome +
     robots * 400;
 }
 
@@ -508,106 +561,130 @@ function check() {
 
     //check to disable/enable upgrade buttons
     if(document.getElementById("typewriter")) {
-        if(Number(lines) < Number(document.getElementById("typewriterCost").innerHTML))
+        if(Number(lines) < 100)
             document.getElementById("buyTypewriter").disabled = true;
         else
             document.getElementById("buyTypewriter").disabled = false;
     }
     if(document.getElementById("keyboard")) {
-        if(Number(lines) < Number(document.getElementById("keyboardCost").innerHTML))
+        if(Number(lines) < 600)
             document.getElementById("buyKeyboard").disabled = true;
         else
             document.getElementById("buyKeyboard").disabled = false;
     }
     if(document.getElementById("mechanical")) {
-        if(Number(lines) < Number(document.getElementById("mechanicalCost").innerHTML))
+        if(Number(lines) < 25000)
             document.getElementById("buyMechanical").disabled = true;
         else
             document.getElementById("buyMechanical").disabled = false;
     }
     if(document.getElementById("eclipse")) {
-        if(Number(lines) < Number(document.getElementById("eclipseCost").innerHTML))
+        if(Number(lines) < 125000)
             document.getElementById("buyEclipse").disabled = true;
         else
             document.getElementById("buyEclipse").disabled = false;
     }
     if(document.getElementById("jgrasp")) {
-        if(Number(lines) < Number(document.getElementById("jgraspCost").innerHTML))
+        if(Number(lines) < 500000)
             document.getElementById("buyJgrasp").disabled = true;
         else
             document.getElementById("buyJgrasp").disabled = false;
     }
     if(document.getElementById("scratch")) {
-        if(Number(lines) < Number(document.getElementById("scratchCost").innerHTML))
+        if(Number(lines) < 2000000)
             document.getElementById("buyScratch").disabled = true;
         else
             document.getElementById("buyScratch").disabled = false;
     }
     if(document.getElementById("coffee")) {
-        if(Number(lines) < Number(document.getElementById("coffeeCost").innerHTML))
+        if(Number(lines) < 200)
             document.getElementById("buyCoffee").disabled = true;
         else
             document.getElementById("buyCoffee").disabled = false;
     }
     if(document.getElementById("college")) {
-        if(Number(lines) < Number(document.getElementById("collegeCost").innerHTML))
+        if(Number(lines) < 1000)
             document.getElementById("buyCollege").disabled = true;
         else
             document.getElementById("buyCollege").disabled = false;
     }
     if(document.getElementById("training")) {
-        if(Number(lines) < Number(document.getElementById("trainingCost").innerHTML))
+        if(Number(lines) < 50000)
             document.getElementById("buyTraining").disabled = true;
         else
             document.getElementById("buyTraining").disabled = false;
     }
     if(document.getElementById("paycheck2")) {
-        if(Number(lines) < Number(document.getElementById("paycheck2Cost").innerHTML))
+        if(Number(lines) < 10000000)
             document.getElementById("buyPaycheck2").disabled = true;
         else
             document.getElementById("buyPaycheck2").disabled = false;
     }
     if(document.getElementById("paycheck")) {
-        if(Number(lines) < Number(document.getElementById("paycheckCost").innerHTML))
+        if(Number(lines) < 1750)
             document.getElementById("buyPaycheck").disabled = true;
         else
             document.getElementById("buyPaycheck").disabled = false;
     }
     if(document.getElementById("office")) {
-        if(Number(lines) < Number(document.getElementById("officeCost").innerHTML))
+        if(Number(lines) < 20000)
             document.getElementById("buyOffice").disabled = true;
         else
             document.getElementById("buyOffice").disabled = false;
     }
     if(document.getElementById("benefits")) {
-        if(Number(lines) < Number(document.getElementById("benefitsCost").innerHTML))
+        if(Number(lines) < 500000)
             document.getElementById("buyBenefits").disabled = true;
         else
             document.getElementById("buyBenefits").disabled = false;
     }
     if(document.getElementById("quantum")) {
-        if(Number(lines) < Number(document.getElementById("quantum").innerHTML))
+        if(Number(lines) < 500000000)
             document.getElementById("buyQuantum").disabled = true;
         else
             document.getElementById("buyQuantum").disabled = false;
     }
     if(document.getElementById("goggles")) {
-        if(Number(lines) < Number(document.getElementById("gogglesCost").innerHTML))
+        if(Number(lines) < 25000)
             document.getElementById("buyGoggles").disabled = true;
         else
             document.getElementById("buyGoggles").disabled = false;
     }
     if(document.getElementById("russian")) {
-        if(Number(lines) < Number(document.getElementById("russianCost").innerHTML))
+        if(Number(lines) < 130000)
             document.getElementById("buyRussian").disabled = true;
         else
             document.getElementById("buyRussian").disabled = false;
     }
     if(document.getElementById("gloves")) {
-        if(Number(lines) < Number(document.getElementById("glovesCost").innerHTML))
+        if(Number(lines) < 1200000)
             document.getElementById("buyGloves").disabled = true;
         else
             document.getElementById("buyGloves").disabled = false;
+    }
+    if(document.getElementById("ball")) {
+        if(Number(lines) < 52000)
+            document.getElementById("buyBall").disabled = true;
+        else
+            document.getElementById("buyBall").disabled = false;
+    }
+    if(document.getElementById("tarot")) {
+        if(Number(lines) < 700000)
+            document.getElementById("buyTarot").disabled = true;
+        else
+            document.getElementById("buyTarot").disabled = false;
+    }
+    if(document.getElementById("runes")) {
+        if(Number(lines) < 2900000)
+            document.getElementById("buyRunes").disabled = true;
+        else
+            document.getElementById("buyRunes").disabled = false;
+    }
+    if(document.getElementById("tome")) {
+        if(Number(lines) < 200000000)
+            document.getElementById("buyTome").disabled = true;
+        else
+            document.getElementById("buyTome").disabled = false;
     }
 
     //checks to make new autos appear
@@ -1120,6 +1197,115 @@ function addUpgrade() {
         document.getElementById("gloves").appendChild(costLabel);
         document.getElementById("gloves").appendChild(cost);
     }
+    //oracle upgrades
+    if(!document.getElementById("ball") && ball===1 && oracles >= 10) {
+        document.getElementById("upgrades").style.setProperty("visibility", "visible");
+        let upgrade = document.createElement("div");
+        upgrade.id = "ball";
+        upgrade.onmouseover = showBall;
+        upgrade.onmouseout = hideDescription;
+        let label = document.createElement("p");
+        label.innerHTML = "Crystal Ball";
+        label.style.display = "inline";
+        let line = document.createElement("br");
+        let button = document.createElement("button");
+        button.innerHTML = "Buy";
+        button.id = "buyBall";
+        button.disabled = true;
+        button.onclick = buyBall;
+        let costLabel = document.createElement("span");
+        costLabel.innerHTML = "Cost:";
+        let cost = document.createElement("p");
+        cost.id = "ballCost";
+        cost.innerHTML = displayNumber(52000);
+        document.getElementById("upgrades").appendChild(upgrade);
+        document.getElementById("ball").appendChild(label);
+        document.getElementById("ball").appendChild(line);
+        document.getElementById("ball").appendChild(button);
+        document.getElementById("ball").appendChild(costLabel);
+        document.getElementById("ball").appendChild(cost);
+    }
+    if(!document.getElementById("tarot") && tarot===1 && oracles >= 25) {
+        document.getElementById("upgrades").style.setProperty("visibility", "visible");
+        let upgrade = document.createElement("div");
+        upgrade.id = "tarot";
+        upgrade.onmouseover = showTarot;
+        upgrade.onmouseout = hideDescription;
+        let label = document.createElement("p");
+        label.innerHTML = "Tarot Cards";
+        label.style.display = "inline";
+        let line = document.createElement("br");
+        let button = document.createElement("button");
+        button.innerHTML = "Buy";
+        button.id = "buyTarot";
+        button.disabled = true;
+        button.onclick = buyTarot;
+        let costLabel = document.createElement("span");
+        costLabel.innerHTML = "Cost:";
+        let cost = document.createElement("p");
+        cost.id = "tarotCost";
+        cost.innerHTML = displayNumber(700000);
+        document.getElementById("upgrades").appendChild(upgrade);
+        document.getElementById("tarot").appendChild(label);
+        document.getElementById("tarot").appendChild(line);
+        document.getElementById("tarot").appendChild(button);
+        document.getElementById("tarot").appendChild(costLabel);
+        document.getElementById("tarot").appendChild(cost);
+    }
+    if(!document.getElementById("runes") && runes===1 && oracles >= 50) {
+        document.getElementById("upgrades").style.setProperty("visibility", "visible");
+        let upgrade = document.createElement("div");
+        upgrade.id = "runes";
+        upgrade.onmouseover = showRunes;
+        upgrade.onmouseout = hideDescription;
+        let label = document.createElement("p");
+        label.innerHTML = "Runes";
+        label.style.display = "inline";
+        let line = document.createElement("br");
+        let button = document.createElement("button");
+        button.innerHTML = "Buy";
+        button.id = "buyRunes";
+        button.disabled = true;
+        button.onclick = buyRunes;
+        let costLabel = document.createElement("span");
+        costLabel.innerHTML = "Cost:";
+        let cost = document.createElement("p");
+        cost.id = "runesCost";
+        cost.innerHTML = displayNumber(2900000);
+        document.getElementById("upgrades").appendChild(upgrade);
+        document.getElementById("runes").appendChild(label);
+        document.getElementById("runes").appendChild(line);
+        document.getElementById("runes").appendChild(button);
+        document.getElementById("runes").appendChild(costLabel);
+        document.getElementById("runes").appendChild(cost);
+    }
+    if(!document.getElementById("tome") && tome===1 && oracles >= 100) {
+        document.getElementById("upgrades").style.setProperty("visibility", "visible");
+        let upgrade = document.createElement("div");
+        upgrade.id = "tome";
+        upgrade.onmouseover = showTome;
+        upgrade.onmouseout = hideDescription;
+        let label = document.createElement("p");
+        label.innerHTML = "Ancient Tome";
+        label.style.display = "inline";
+        let line = document.createElement("br");
+        let button = document.createElement("button");
+        button.innerHTML = "Buy";
+        button.id = "buyTome";
+        button.disabled = true;
+        button.onclick = buyTome;
+        let costLabel = document.createElement("span");
+        costLabel.innerHTML = "Cost:";
+        let cost = document.createElement("p");
+        cost.id = "tomeCost";
+        cost.innerHTML = displayNumber(200000000);
+        document.getElementById("upgrades").appendChild(upgrade);
+        document.getElementById("tome").appendChild(label);
+        document.getElementById("tome").appendChild(line);
+        document.getElementById("tome").appendChild(button);
+        document.getElementById("tome").appendChild(costLabel);
+        document.getElementById("tome").appendChild(cost);
+    }
 }
 
 
@@ -1153,6 +1339,10 @@ function save(a) {
     document.cookie = "goggles=" + goggles +"; expires=" + d.toUTCString() + ";";
     document.cookie = "russian=" + russian +"; expires=" + d.toUTCString() + ";";
     document.cookie = "gloves=" + gloves +"; expires=" + d.toUTCString() + ";";
+    document.cookie = "ball=" + ball +"; expires=" + d.toUTCString() + ";";
+    document.cookie = "tarot=" + tarot +"; expires=" + d.toUTCString() + ";";
+    document.cookie = "runes=" + runes +"; expires=" + d.toUTCString() + ";";
+    document.cookie = "tome=" + tome +"; expires=" + d.toUTCString() + ";";
     if(a === 1) {
         document.getElementById("saveText").style.setProperty("visibility", "visible");
         setTimeout(() => {
@@ -1171,7 +1361,7 @@ window.onload = function () {
         document.getElementById("internCost").innerHTML = displayNumber(internCost);
         programmers = Number(getCookie("programmers"));
         document.getElementById("programmers").innerHTML = displayNumber(programmers);
-        programmerCost = Math.round(100 * Math.pow(1.15, programmers));
+        programmerCost = Math.round(100 * Math.pow(1.12, programmers));
         document.getElementById("programmerCost").innerHTML = displayNumber(programmerCost);
         hackers = Number(getCookie("hackers"));
         document.getElementById("hackers").innerHTML = displayNumber(hackers);
@@ -1204,6 +1394,10 @@ window.onload = function () {
         goggles = Number(getCookie("goggles"));
         russian = Number(getCookie("russian"));
         gloves = Number(getCookie("gloves"));
+        ball = Number(getCookie("ball"));
+        tarot = Number(getCookie("tarot"));
+        runes = Number(getCookie("runes"));
+        tome = Number(getCookie("tome"));
     }
     update();
 }
