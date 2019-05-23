@@ -35,8 +35,8 @@ document.onkeydown = function(e) {
         linesUp(-1);
         document.getElementById("linesUp").disabled = true;
     }
-    else
-        linesUp(1000000);
+    //else
+    //    linesUp(1000000);
 }
 
 function clickNum() {
@@ -1197,6 +1197,34 @@ function addUpgrade() {
         document.getElementById("gloves").appendChild(costLabel);
         document.getElementById("gloves").appendChild(cost);
     }
+    /*if(!document.getElementById("hackerman") && hackerman===1 && hackers >= 100) {
+        document.getElementById("upgrades").style.setProperty("visibility", "visible");
+        let upgrade = document.createElement("div");
+        upgrade.id = "hackerman";
+        upgrade.onmouseover = showHackerman;
+        upgrade.onmouseout = hideDescription;
+        let label = document.createElement("p");
+        label.innerHTML = "Hackerman";
+        label.style.display = "inline";
+        let line = document.createElement("br");
+        let button = document.createElement("button");
+        button.innerHTML = "Buy";
+        button.id = "buyHackerman";
+        button.disabled = true;
+        button.onclick = buyHackerman;
+        let costLabel = document.createElement("span");
+        costLabel.innerHTML = "Cost:";
+        let cost = document.createElement("p");
+        cost.id = "hackermanCost";
+        cost.innerHTML = displayNumber(1200000);
+        document.getElementById("upgrades").appendChild(upgrade);
+        document.getElementById("hackerman").appendChild(label);
+        document.getElementById("hackerman").appendChild(line);
+        document.getElementById("hackerman").appendChild(button);
+        document.getElementById("hackerman").appendChild(costLabel);
+        document.getElementById("hackerman").appendChild(cost);
+    }*/
+
     //oracle upgrades
     if(!document.getElementById("ball") && ball===1 && oracles >= 10) {
         document.getElementById("upgrades").style.setProperty("visibility", "visible");
