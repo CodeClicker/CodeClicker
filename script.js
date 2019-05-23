@@ -23,7 +23,7 @@ function linesUp(num) {
     }
     lines += num;
     document.getElementById("lines").innerHTML = displayNumber(Math.floor(lines));
-    check();
+    update();
 }
 
 //clicks when spacebar is pressed
@@ -446,6 +446,10 @@ function update() {
     
     //enables/disables buttons
     check();
+
+    //sets dark mode
+    if(mode==="dark")
+        dark();
 
     //shows lps
     document.getElementById("lps").style.setProperty("visibility", "visible");
@@ -995,7 +999,6 @@ function addUpgrade() {
         button.id = "buyBenefits";
         button.disabled = true;
         button.onclick = buyBenefits;
-        alert("yeet");
         let costLabel = document.createElement("span");
         costLabel.innerHTML = "Cost:";
         let cost = document.createElement("p");
@@ -1262,6 +1265,9 @@ function dark() {
     let updates = document.getElementsByTagName("li");
     for(let i = 0; i < updates.length; i++)
         updates[i].style.setProperty("color",green);
+    let costs = document.getElementsByTagName("span");
+    for(let i = 0; i < costs.length; i++)
+        costs[i].style.setProperty("color",green);
     document.getElementById("mode").style.setProperty("color", green);
 }
 
