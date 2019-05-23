@@ -260,7 +260,7 @@ function buyOffice() {
 }
 
 let benefits = 1;
-function buyOffice() {
+function buyBenefits() {
     benefits = 4;
     lines -= 500000;
     document.getElementById("upgrades").removeChild(document.getElementById("benefits"));
@@ -269,7 +269,7 @@ function buyOffice() {
 }
 
 let quantum = 1;
-function buyOffice() {
+function buyQuantum() {
     quantum = 10;
     lines -= 500000000;
     document.getElementById("upgrades").removeChild(document.getElementById("quantum"));
@@ -995,6 +995,7 @@ function addUpgrade() {
         button.id = "buyBenefits";
         button.disabled = true;
         button.onclick = buyBenefits;
+        alert("yeet");
         let costLabel = document.createElement("span");
         costLabel.innerHTML = "Cost:";
         let cost = document.createElement("p");
@@ -1272,8 +1273,6 @@ function light() {
 
 //STUFF TO DO
 //Add more upgrades
-//highlight stuff when moused over
 //make ending
-//dark mode
 
 //If there is time, make autoautoclickerclicker?
