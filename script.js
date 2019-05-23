@@ -1258,7 +1258,7 @@ function dark() {
     let headers = document.getElementsByTagName("h2");
     for(let i =0; i < headers.length; i++)
         headers[i].style.setProperty("color", green);
-    document.getElementById("desc").style.setProperty("border", "solid greenyellow 7px")
+    document.getElementById("desc").style.setProperty("border", "solid " + green + " 7px");
     let text = document.getElementsByTagName("p");
     for(let i =0; i < text.length; i++)
         text[i].style.setProperty("color", green);
