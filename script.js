@@ -35,8 +35,8 @@ document.onkeydown = function(e) {
         linesUp(-1);
         document.getElementById("linesUp").disabled = true;
     }
-    //else
-    //    linesUp(1000000);
+    else
+        linesUp(1000000);
 }
 
 function clickNum() {
@@ -282,7 +282,7 @@ function buyGoggles() {
     goggles = 2;
     lines -= 25000;
     document.getElementById("upgrades").removeChild(document.getElementById("goggles"));
-    hackerDescription = "Hackers: Why would you ever write code when you can just steal it from others? Increases lines per seconds by " + 5 * goggles * russian * gloves + ".";
+    hackerDescription = "Hackers: Why would you ever write code when you can just steal it from others? Increases lines per seconds by " + 5 * goggles * russian * gloves * hackerman + ".";
     update();
 }
 let russian = 1;
@@ -290,7 +290,7 @@ function buyRussian() {
     russian = 2;
     lines -= 130000;
     document.getElementById("upgrades").removeChild(document.getElementById("russian"));
-    hackerDescription = "Hackers: Why would you ever write code when you can just steal it from others? Increases lines per seconds by " + 5 * goggles * russian * gloves + ".";
+    hackerDescription = "Hackers: Why would you ever write code when you can just steal it from others? Increases lines per seconds by " + 5 * goggles * russian * gloves * hackerman + ".";
     update();
 }
 let gloves = 1;
@@ -298,7 +298,15 @@ function buyGloves() {
     gloves = 3;
     lines -= 1200000;
     document.getElementById("upgrades").removeChild(document.getElementById("gloves"));
-    hackerDescription = "Hackers: Why would you ever write code when you can just steal it from others? Increases lines per seconds by " + 5 * goggles * russian * gloves + ".";
+    hackerDescription = "Hackers: Why would you ever write code when you can just steal it from others? Increases lines per seconds by " + 5 * goggles * russian * gloves * hackerman + ".";
+    update();
+}
+let hackerman = 1;
+function buyHackerman() {
+    hackerman = 7;
+    lines -= 136000000;
+    document.getElementById("upgrades").removeChild(document.getElementById("gloves"));
+    hackerDescription = "Hackers: Why would you ever write code when you can just steal it from others? Increases lines per seconds by " + 5 * goggles * russian * gloves * hackerman + ".";
     update();
 }
 
@@ -362,6 +370,7 @@ let quantumDescription = "Quantum Computers: The fastest computers in existance 
 let gogglesDescription = "Hacker Goggles: The most necessary piece of equipment for any hacker. Doubles hacker efficiency.";
 let russianDescription = "Russian Lessons: Working with the hackers would be a lot easier if you could speak their language. Вырасти шикарного картофеля товарищем! Doubles Hacker Efficiency."
 let glovesDescription = "Hacker Gloves: Complete the hacker look with some hacker gloves. Triples hacker efficieny.";
+let hackermanDescription = "Hackerman: Hackerman is the most legendary hacker. Most thought he was a myth. And now he's here to work on your program. He's so powerful, all of your other hackers become better just by being around him. Multiplies hacker efficiency by 7.";
 
 let ballDescription = "Crystal Ball: A shiny ball that is used to gaze into the future. Doubles oracle efficiency.";
 let tarotDescription = "Tarot Cards: These cards aren't for playing with, they can predict someone's future. Doubles oracle efficiency.";
@@ -456,6 +465,10 @@ function showGloves() {
     document.getElementById("description").innerHTML = glovesDescription;
     document.getElementById("description").style.setProperty("visibility", "visible");
 }
+function showHackerman() {
+    document.getElementById("description").innerHTML = hackermanDescription;
+    document.getElementById("description").style.setProperty("visibility", "visible");
+}
 function showBall() {
     document.getElementById("description").innerHTML = ballDescription;
     document.getElementById("description").style.setProperty("visibility", "visible");
@@ -480,7 +493,7 @@ function hideDescription() {
 function getInc() {
     return interns * .1 * coffee * college * training * paycheck2 +
     programmers * 1 * paycheck * office * benefits * quantum +
-    hackers * 5 * goggles * russian * gloves +
+    hackers * 5 * goggles * russian * gloves * hackerman +
     oracles * 35 * ball * tarot * runes * tome +
     robots * 400;
 }
@@ -661,6 +674,12 @@ function check() {
             document.getElementById("buyGloves").disabled = true;
         else
             document.getElementById("buyGloves").disabled = false;
+    }
+    if(document.getElementById("hackerman")) {
+        if(Number(lines) < 136000000)
+            document.getElementById("buyHackerman").disabled = true;
+        else
+            document.getElementById("buyHackerman").disabled = false;
     }
     if(document.getElementById("ball")) {
         if(Number(lines) < 52000)
@@ -1197,7 +1216,7 @@ function addUpgrade() {
         document.getElementById("gloves").appendChild(costLabel);
         document.getElementById("gloves").appendChild(cost);
     }
-    /*if(!document.getElementById("hackerman") && hackerman===1 && hackers >= 100) {
+    if(!document.getElementById("hackerman") && hackerman===1 && hackers >= 100) {
         document.getElementById("upgrades").style.setProperty("visibility", "visible");
         let upgrade = document.createElement("div");
         upgrade.id = "hackerman";
@@ -1216,14 +1235,14 @@ function addUpgrade() {
         costLabel.innerHTML = "Cost:";
         let cost = document.createElement("p");
         cost.id = "hackermanCost";
-        cost.innerHTML = displayNumber(1200000);
+        cost.innerHTML = displayNumber(136000000);
         document.getElementById("upgrades").appendChild(upgrade);
         document.getElementById("hackerman").appendChild(label);
         document.getElementById("hackerman").appendChild(line);
         document.getElementById("hackerman").appendChild(button);
         document.getElementById("hackerman").appendChild(costLabel);
         document.getElementById("hackerman").appendChild(cost);
-    }*/
+    }
 
     //oracle upgrades
     if(!document.getElementById("ball") && ball===1 && oracles >= 10) {
@@ -1367,6 +1386,7 @@ function save(a) {
     document.cookie = "goggles=" + goggles +"; expires=" + d.toUTCString() + ";";
     document.cookie = "russian=" + russian +"; expires=" + d.toUTCString() + ";";
     document.cookie = "gloves=" + gloves +"; expires=" + d.toUTCString() + ";";
+    document.cookie = "hackerman=" + hackerman +"; expires=" + d.toUTCString() + ";";
     document.cookie = "ball=" + ball +"; expires=" + d.toUTCString() + ";";
     document.cookie = "tarot=" + tarot +"; expires=" + d.toUTCString() + ";";
     document.cookie = "runes=" + runes +"; expires=" + d.toUTCString() + ";";
@@ -1422,6 +1442,7 @@ window.onload = function () {
         goggles = Number(getCookie("goggles"));
         russian = Number(getCookie("russian"));
         gloves = Number(getCookie("gloves"));
+        hackerman = Number(getCookie("hackerman"));
         ball = Number(getCookie("ball"));
         tarot = Number(getCookie("tarot"));
         runes = Number(getCookie("runes"));
