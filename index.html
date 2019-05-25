@@ -48,7 +48,7 @@
                 <span>Cost:</span>
                 <p class="cost" id="internCost">10</p>
             </div>
-            <br></br>
+            <br>
             
             <div class="hide" onmouseover="hideDescription()"></div>
 
@@ -60,7 +60,7 @@
                 <span>Cost:</span>
                 <p class="cost" id="programmerCost">100</p>
             </div>
-            <br></br>
+            <br>
             
             <div class="hide" onmouseover="hideDescription()"></div>
 
@@ -72,7 +72,7 @@
                 <span>Cost:</span>
                 <p class="cost" id="hackerCost">2000</p>
             </div>
-            <br></br>
+            <br>
             <div class="hide" onmouseover="hideDescription()"></div>
 
             <div id="oracle" class="auto" onmouseover="showOracle()" onmouseout="hideDescription()">
@@ -83,7 +83,7 @@
                 <span>Cost:</span>
                 <p class="cost" id="oracleCost">15000</p>
             </div>
-            <br></br>
+            <br>
 
             <div class="hide" onmouseover="hideDescription()"></div>
 
@@ -96,10 +96,55 @@
                 <p class="cost" id="robotCost">100000</p>
             </div>
             <br>
+
+            <div class="hide" onmouseover="hideDescription()"></div>
+
+            <div id="clone" class="auto" onmouseover="showClone()" onmouseout="hideDescription()">
+                <p>CloneTech:</p>
+                <p id="clones">0</p>
+                <br>
+                <button type="button" disabled id="clonesUp" onclick="clonesUp()">Buy</button>
+                <span>Cost:</span>
+                <p class="cost" id="cloneCost">500000000</p>
+            </div>
             
             <!--Upgrades-->
             <div id="upgrades">
                 <h2 style="margin-bottom: 10px;">Upgrades:</h2>
+            </div>
+
+            <div id="Cloning">
+                <h2>Cloning:</h2>
+                <p>CloneTechs:</p>
+                <p id="techs">0</p>
+
+                <div id="iClone" class="auto" value="0" onmouseover="showIClone()" onmouseout="hideDescription()">
+                    <p>Type I Clones:</p>
+                    <p id="ic">0</p>
+                    <br>
+                    <input type="number" step="1" min="0" id="iClones">
+                </div>
+                <br>
+                <div id="pClone" class="auto" value="0" onmouseover="showPClone()" onmouseout="hideDescription()">
+                    <p>Type P Clones:</p>
+                    <p id="pc">0</p>
+                    <br>
+                    <input type="number" step="2" min="0" id="pClones">
+                </div>
+                <br>
+                <div id="hClone" class="auto" value="0" onmouseover="showHClone()" onmouseout="hideDescription()">
+                    <p>Type H Clones:</p>
+                    <p id=hc">0</p>
+                    <br>
+                    <input type="number" step="5" min="0" id="hClones">
+                </div>
+                <br>
+                <div id="oClone" class="auto" value="0" onmouseover="showOClone()" onmouseout="hideDescription()">
+                    <p>Type O Clones:</p>
+                    <p id="pc">0</p>
+                    <br>
+                    <input type="number" step="10" min="0" id="oClones">
+                </div>
             </div>
 
             <!--Descriptions-->
@@ -109,8 +154,9 @@
             </div>
         </div>
         <a id="bottom"></a>
-        <h2>Update log:</h2>
+        <h2>Version History:</h2>
         <ul>
+            <li>v1.6: Big update! Artificial Intelligence now has the research upgrade, which leads to further improvements. The first of these is CloneTech. This upgrade and the ones after it are able to produce workers like interns, programmers, etc. instead of lines.</li>
             <li>v1.5: Added 4 new upgrades for oracles and an upgrade for hackers.</li>
             <li>v1.4.2: Fixed issues with buying upgrades that cost over 1 Million and lowered programmer cost.</li>
             <li>v1.4.1: Fixed dark mode with upgrades.</li>
