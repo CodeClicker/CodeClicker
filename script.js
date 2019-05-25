@@ -7,6 +7,12 @@ let programmers = 0;
 let hackers = 0;
 let oracles = 0;
 let robots = 0;
+let clones = 0;
+let techs = 0;
+let iClones = 0;
+let pClones = 0;
+let hClones = 0;
+let oClones = 0;
 
 function linesUp(num) {
     if(num===-1) {
@@ -36,7 +42,7 @@ document.onkeydown = function(e) {
         document.getElementById("linesUp").disabled = true;
     }
     //else
-    //    linesUp(1000000);
+    //    linesUp(100000000);
 }
 
 function clickNum() {
@@ -94,10 +100,11 @@ function displayNumber(num) {
             case 27: word = "Octillion"; break;
             case 30: word = "Nonillion"; break;
             case 33: word = "Decillion"; break;
+            default: return "A lot";
         }
         return (num/(Math.pow(10, i))).toFixed(3) + " " + word;
     }
-    return num;
+    return Number(num.toFixed(3));
 }
 
 //buys autoclickers
@@ -149,6 +156,18 @@ function robotsUp() {
     robotCost = Math.round(100000 * Math.pow(1.05, robots));
     document.getElementById("robots").innerHTML = displayNumber(robots);
     document.getElementById("robotCost").innerHTML = displayNumber(robotCost);
+    update();
+}
+
+let cloneCost = 5000000;
+function clonesUp() {
+    clones++;
+    techs++;
+    lines -= cloneCost;
+    cloneCost = Math.round(5000000 * Math.pow(1.2, clones));
+    document.getElementById("clones").innerHTML = displayNumber(clones);
+    document.getElementById("techs").innerHTML = displayNumber(techs);
+    document.getElementById("cloneCost").innerHTML = displayNumber(cloneCost);
     update();
 }
 
@@ -343,12 +362,66 @@ function buyTome() {
     oracleDescription = "Oracles: The oracles are mysterious people with ancient powers. They can gaze into the future and see code not yet written. Increases lines per second by " + 35 * ball * tarot * runes * tome + ".";
     update();
 }
+
+//artificial intelligence upgrades
+let research = 1;
+function buyResearch() {
+    research = .8;
+    lines -= 400000;
+    document.getElementById("upgrades").removeChild(document.getElementById("research"));
+    robotDescription = "Artificial Intelligence: A program designed to write programs. Genius. Increases lines per second by " + 400 * research + ".";
+    update();
+}
+let clonetech = false;
+function buyClonetech() {
+    clonetech = true;
+    lines -= 1500000;
+    document.getElementById("upgrades").removeChild(document.getElementById("clonetech"));
+    document.getElementById("cloneCost").innerHTML = displayNumber(500000);
+    update();
+}
+
+//clone upgrades
+let typeI = false;
+function buyTypeI() {
+    typeI = true;
+    lines -= 500000;
+    document.getElementById("upgrades").removeChild(document.getElementById("typeI"));
+    document.getElementById("iClone").style.setProperty("visibility", "visible");
+    update();
+}
+let typeP = false;
+function buyTypeP() {
+    typeP = true;
+    lines -= 100000000;
+    document.getElementById("upgrades").removeChild(document.getElementById("typeP"));
+    document.getElementById("pClone").style.setProperty("visibility", "visible");
+    update();
+}
+let typeH = false;
+function buyTypeH() {
+    typeH = true;
+    lines -= 20000000;
+    document.getElementById("upgrades").removeChild(document.getElementById("typeH"));
+    document.getElementById("hClone").style.setProperty("visibility", "visible");
+    update();
+}
+let typeO = false;
+function buyTypeO() {
+    typeO = true;
+    lines -= 500000000;
+    document.getElementById("upgrades").removeChild(document.getElementById("typeO"));
+    document.getElementById("oClone").style.setProperty("visibility", "visible");
+    update();
+}
+
 //descriptions
 let internDescription = "Interns: Interns need experience so they are willing to write code for you, but they aren't very good at it. Increases lines per second by 0.1.";
 let programmerDescription = "Programmers: Programmers are reliable workers that can write code for you. Increases lines per second by 1.";
 let hackerDescription = "Hackers: Why would you ever write code when you can just steal it from others? Increases lines per seconds by 5.";
 let oracleDescription = "Oracles: The oracles are mysterious people with ancient powers. They can gaze into the future and see code not yet written. Increases lines per second by 35.";
 let robotDescription = "Artificial Intelligence: A program designed to write programs. Genius. Increases lines per second by 400.";
+let cloneDescription = "Clones: The AI can clone your workers to make more of them. Developing further clone types will require more clones and more AI.";
 
 let typewriterDescription = "Typewriter: It's a little bit rusty and it's missing the h key, but it still works. Doubles lines per click.";
 let keyboardDescription = "Keyboard: A keyboard might be helpful if you want to write code. Doubles lines per click.";
@@ -377,6 +450,14 @@ let tarotDescription = "Tarot Cards: These cards aren't for playing with, they c
 let runesDescription = "Runes: Like the tarot cards, these nordic runes give the user knowledge of their future. Triple oracle efficiency.";
 let tomeDescription = "Ancient Tome: This tome, found in the ruins of a lost civilization, has some of the most powerful future-telling magic ever made. Multiplies oracle efficiency by 5.";
 
+let researchDescription = "Research: Use some of your artificial intelligence computers to research potential new options for writing code. Lowers efficiency by 20%, but could lead to some interesting new things.";
+let clonetechDescription = "CloneTech: The AI may have discovered a way to clone your workers, allowing you to get more workers very easily, but you will need to invest more code in their research.";
+
+let typeIDescription = "TypeI Clones: Clones of the interns. Cheap and easy to create. Require 1 CloneTech.";
+let typePDescription = "TypeI Clones: Clones of the programmers. Require more difficult cloning. Require 2 CloneTech.";
+let typeODescription = "TypeI Clones: Clones of the hackers. If you think about it, its almost like hacking them. Require 5 CloneTech.";
+let typeHDescription = "TypeI Clones: Clones of the oracles. Cloning their bodies is easy, but cloning their magic is a litlle bit harder. Require 10 CloneTech.";
+
 function showIntern() {
     document.getElementById("description").innerHTML = internDescription;
     document.getElementById("description").style.setProperty("visibility", "visible");
@@ -395,6 +476,10 @@ function showOracle() {
 }
 function showRobot() {
     document.getElementById("description").innerHTML = robotDescription;
+    document.getElementById("description").style.setProperty("visibility", "visible");
+}
+function showClone() {
+    document.getElementById("description").innerHTML = cloneDescription;
     document.getElementById("description").style.setProperty("visibility", "visible");
 }
 function showTypewriter() {
@@ -485,6 +570,30 @@ function showTome() {
     document.getElementById("description").innerHTML = tomeDescription;
     document.getElementById("description").style.setProperty("visibility", "visible");
 }
+function showResearch() {
+    document.getElementById("description").innerHTML = researchDescription;
+    document.getElementById("description").style.setProperty("visibility", "visible");
+}
+function showClonetech() {
+    document.getElementById("description").innerHTML = clonetechDescription;
+    document.getElementById("description").style.setProperty("visibility", "visible");
+}
+function showTypeI() {
+    document.getElementById("description").innerHTML = typeIDescription;
+    document.getElementById("description").style.setProperty("visibility", "visible");
+}
+function showTypeP() {
+    document.getElementById("description").innerHTML = typePDescription;
+    document.getElementById("description").style.setProperty("visibility", "visible");
+}
+function showTypeH() {
+    document.getElementById("description").innerHTML = typeHDescription;
+    document.getElementById("description").style.setProperty("visibility", "visible");
+}
+function showTypeO() {
+    document.getElementById("description").innerHTML = typeODescription;
+    document.getElementById("description").style.setProperty("visibility", "visible");
+}
 function hideDescription() {
     document.getElementById("description").style.setProperty("visibility", "hidden");
 }
@@ -495,7 +604,7 @@ function getInc() {
     programmers * 1 * paycheck * office * benefits * quantum +
     hackers * 5 * goggles * russian * gloves * hackerman +
     oracles * 35 * ball * tarot * runes * tome +
-    robots * 400;
+    robots * 400 * research;
 }
 
 //increments lines every second
@@ -512,6 +621,28 @@ function update() {
     
     //enables/disables buttons
     check();
+
+    //sets max for sliders
+    setMax();
+
+    if(typeI) {
+        iClones = document.getElementById("iClones").value;
+        document.getElementById("ic").innerHTML = iClones;
+    }
+    if(typeP) {
+        pClones = document.getElementById("pClones").value;
+        document.getElementById("pc").innerHTML = pClones/2;
+    }
+    if(typeH) {
+        hClones = document.getElementById("hClones").value;
+        document.getElementById("hc").innerHTML = hClones/5;
+    }
+    if(typeO) {
+        oClones = document.getElementById("oClones").value;
+        document.getElementById("oc").innerHTML = oClones/10;
+    }
+    techs = clones - iClones - pClones - hClones - oClones;
+    document.getElementById("techs").innerHTML = displayNumber(techs);
 
     //sets dark mode
     if(mode==="dark")
@@ -535,6 +666,22 @@ function yeet() {
     let d2 = new Date();
     timePassed = (d2-d1)/1000;
     linesUp(getInc()*timePassed);
+    interns += iClones * timePassed;
+    programmers += pClones/2 * timePassed;
+    hackers += hClones/5 * timePassed;
+    oracles += oClones/10 * timePassed;
+    document.getElementById("interns").innerHTML = displayNumber(interns);
+    internCost = Math.round(10 * Math.pow(1.14, interns));
+    document.getElementById("internCost").innerHTML = displayNumber(internCost);
+    document.getElementById("programmers").innerHTML = displayNumber(programmers);
+    programmerCost = Math.round(10 * Math.pow(1.12, programmers));
+    document.getElementById("programmerCost").innerHTML = displayNumber(programmerCost);
+    document.getElementById("hackers").innerHTML = displayNumber(hackers);
+    hackerCost = Math.round(10 * Math.pow(1.11, hackers));
+    document.getElementById("hackerCost").innerHTML = displayNumber(hackerCost);
+    document.getElementById("oracles").innerHTML = displayNumber(oracles);
+    oracleCost = Math.round(10 * Math.pow(1.18, oracles));
+    document.getElementById("oracleCost").innerHTML = displayNumber(oracleCost);
     d1 = new Date();
 }
 
@@ -553,24 +700,32 @@ function check() {
         document.getElementById("internsUp").disabled = true;
     else
         document.getElementById("internsUp").disabled = false;
-    
+
     if(lines < programmerCost)
         document.getElementById("programmersUp").disabled = true;
     else
         document.getElementById("programmersUp").disabled = false;
-    
+
     if(lines < hackerCost)
         document.getElementById("hackersUp").disabled = true;
     else
         document.getElementById("hackersUp").disabled = false;
+
     if(lines < oracleCost)
         document.getElementById("oraclesUp").disabled = true;
     else
         document.getElementById("oraclesUp").disabled = false;
+
     if(lines < robotCost)
         document.getElementById("robotsUp").disabled = true;
     else
         document.getElementById("robotsUp").disabled = false;
+
+    if(lines < cloneCost)
+        document.getElementById("clonesUp").disabled = true;
+    else
+        document.getElementById("clonesUp").disabled = false;
+
 
     //check to disable/enable upgrade buttons
     if(document.getElementById("typewriter")) {
@@ -705,6 +860,42 @@ function check() {
         else
             document.getElementById("buyTome").disabled = false;
     }
+    if(document.getElementById("research")) {
+        if(Number(lines) < 400000)
+            document.getElementById("buyResearch").disabled = true;
+        else
+            document.getElementById("buyResearch").disabled = false;
+    }
+    if(document.getElementById("clonetech")) {
+        if(Number(lines) < 1500000)
+            document.getElementById("buyClonetech").disabled = true;
+        else
+            document.getElementById("buyClonetech").disabled = false;
+    }
+    if(document.getElementById("typeI")) {
+        if(Number(lines) < 500000)
+            document.getElementById("buyTypeI").disabled = true;
+        else
+            document.getElementById("buyTypeI").disabled = false;
+    }
+    if(document.getElementById("typeP")) {
+        if(Number(lines) < 100000000)
+            document.getElementById("buyTypeP").disabled = true;
+        else
+            document.getElementById("buyTypeP").disabled = false;
+    }
+    if(document.getElementById("typeH")) {
+        if(Number(lines) < 20000000)
+            document.getElementById("buyTypeH").disabled = true;
+        else
+            document.getElementById("buyTypeH").disabled = false;
+    }
+    if(document.getElementById("typeO")) {
+        if(Number(lines) < 500000000)
+            document.getElementById("buyTypeO").disabled = true;
+        else
+            document.getElementById("buyTypeO").disabled = false;
+    }
 
     //checks to make new autos appear
     if(lines >= 10 || interns > 0)
@@ -717,6 +908,18 @@ function check() {
         document.getElementById("oracle").style.setProperty("visibility", "visible");
     if(oracles >= 5 || robots > 0)
         document.getElementById("robot").style.setProperty("visibility", "visible");
+    if(clonetech) {
+        document.getElementById("clone").style.setProperty("visibility", "visible");
+        document.getElementById("Cloning").style.setProperty("visibility", "visible");
+    }
+    if(typeI)
+        document.getElementById("iClone").style.setProperty("visibility", "visible");
+    if(typeP)
+        document.getElementById("pClone").style.setProperty("visibility", "visible");
+    if(typeH)
+        document.getElementById("hClone").style.setProperty("visibility", "visible");
+    if(typeO)
+        document.getElementById("oClone").style.setProperty("visibility", "visible");
     //checks for upgrades to add and when to make upgrades appear
     addUpgrade();
 }
@@ -1353,7 +1556,181 @@ function addUpgrade() {
         document.getElementById("tome").appendChild(costLabel);
         document.getElementById("tome").appendChild(cost);
     }
+
+    //artificial intelligence upgrades
+    if(!document.getElementById("research") && research===1 && robots >= 5) {
+        document.getElementById("upgrades").style.setProperty("visibility", "visible");
+        let upgrade = document.createElement("div");
+        upgrade.id = "research";
+        upgrade.onmouseover = showResearch;
+        upgrade.onmouseout = hideDescription;
+        let label = document.createElement("p");
+        label.innerHTML = "Research";
+        label.style.display = "inline";
+        let line = document.createElement("br");
+        let button = document.createElement("button");
+        button.innerHTML = "Buy";
+        button.id = "buyResearch";
+        button.disabled = true;
+        button.onclick = buyResearch;
+        let costLabel = document.createElement("span");
+        costLabel.innerHTML = "Cost:";
+        let cost = document.createElement("p");
+        cost.id = "researchCost";
+        cost.innerHTML = displayNumber(500000);
+        document.getElementById("upgrades").appendChild(upgrade);
+        document.getElementById("research").appendChild(label);
+        document.getElementById("research").appendChild(line);
+        document.getElementById("research").appendChild(button);
+        document.getElementById("research").appendChild(costLabel);
+        document.getElementById("research").appendChild(cost);
+    }
+    if(!document.getElementById("clonetech") && clonetech===false && research===.8) {
+        document.getElementById("upgrades").style.setProperty("visibility", "visible");
+        let upgrade = document.createElement("div");
+        upgrade.id = "clonetech";
+        upgrade.onmouseover = showClonetech;
+        upgrade.onmouseout = hideDescription;
+        let label = document.createElement("p");
+        label.innerHTML = "CloneTech";
+        label.style.display = "inline";
+        let line = document.createElement("br");
+        let button = document.createElement("button");
+        button.innerHTML = "Buy";
+        button.id = "buyClonetech";
+        button.disabled = true;
+        button.onclick = buyClonetech;
+        let costLabel = document.createElement("span");
+        costLabel.innerHTML = "Cost:";
+        let cost = document.createElement("p");
+        cost.id = "clonetechCost";
+        cost.innerHTML = displayNumber(1500000);
+        document.getElementById("upgrades").appendChild(upgrade);
+        document.getElementById("clonetech").appendChild(label);
+        document.getElementById("clonetech").appendChild(line);
+        document.getElementById("clonetech").appendChild(button);
+        document.getElementById("clonetech").appendChild(costLabel);
+        document.getElementById("clonetech").appendChild(cost);
+    }
+
+    //clone upgrades
+    if(!document.getElementById("typeI") && typeI===false && clonetech && robots >=10) {
+        document.getElementById("upgrades").style.setProperty("visibility", "visible");
+        let upgrade = document.createElement("div");
+        upgrade.id = "typeI";
+        upgrade.onmouseover = showTypeI;
+        upgrade.onmouseout = hideDescription;
+        let label = document.createElement("p");
+        label.innerHTML = "TypeI Clones";
+        label.style.display = "inline";
+        let line = document.createElement("br");
+        let button = document.createElement("button");
+        button.innerHTML = "Buy";
+        button.id = "buyTypeI";
+        button.disabled = true;
+        button.onclick = buyTypeI;
+        let costLabel = document.createElement("span");
+        costLabel.innerHTML = "Cost:";
+        let cost = document.createElement("p");
+        cost.id = "typeICost";
+        cost.innerHTML = displayNumber(500000);
+        document.getElementById("upgrades").appendChild(upgrade);
+        document.getElementById("typeI").appendChild(label);
+        document.getElementById("typeI").appendChild(line);
+        document.getElementById("typeI").appendChild(button);
+        document.getElementById("typeI").appendChild(costLabel);
+        document.getElementById("typeI").appendChild(cost);
+    }
+    if(!document.getElementById("typeP") && typeP===false && typeI && robots >=25) {
+        document.getElementById("upgrades").style.setProperty("visibility", "visible");
+        let upgrade = document.createElement("div");
+        upgrade.id = "typeP";
+        upgrade.onmouseover = showTypeP;
+        upgrade.onmouseout = hideDescription;
+        let label = document.createElement("p");
+        label.innerHTML = "TypeP Clones";
+        label.style.display = "inline";
+        let line = document.createElement("br");
+        let button = document.createElement("button");
+        button.innerHTML = "Buy";
+        button.id = "buyTypeP";
+        button.disabled = true;
+        button.onclick = buyTypeP;
+        let costLabel = document.createElement("span");
+        costLabel.innerHTML = "Cost:";
+        let cost = document.createElement("p");
+        cost.id = "typePCost";
+        cost.innerHTML = displayNumber(100000000);
+        document.getElementById("upgrades").appendChild(upgrade);
+        document.getElementById("typeP").appendChild(label);
+        document.getElementById("typeP").appendChild(line);
+        document.getElementById("typeP").appendChild(button);
+        document.getElementById("typeP").appendChild(costLabel);
+        document.getElementById("typeP").appendChild(cost);
+    }
+    if(!document.getElementById("typeH") && typeH===false && typeP && robots >=50) {
+        document.getElementById("upgrades").style.setProperty("visibility", "visible");
+        let upgrade = document.createElement("div");
+        upgrade.id = "typeH";
+        upgrade.onmouseover = showTypeH;
+        upgrade.onmouseout = hideDescription;
+        let label = document.createElement("p");
+        label.innerHTML = "TypeH Clones";
+        label.style.display = "inline";
+        let line = document.createElement("br");
+        let button = document.createElement("button");
+        button.innerHTML = "Buy";
+        button.id = "buyTypeH";
+        button.disabled = true;
+        button.onclick = buyTypeH;
+        let costLabel = document.createElement("span");
+        costLabel.innerHTML = "Cost:";
+        let cost = document.createElement("p");
+        cost.id = "typeHCost";
+        cost.innerHTML = displayNumber(20000000);
+        document.getElementById("upgrades").appendChild(upgrade);
+        document.getElementById("typeH").appendChild(label);
+        document.getElementById("typeH").appendChild(line);
+        document.getElementById("typeH").appendChild(button);
+        document.getElementById("typeH").appendChild(costLabel);
+        document.getElementById("typeH").appendChild(cost);
+    }
+    if(!document.getElementById("typeO") && typeO===false && typeH && robots >=100) {
+        document.getElementById("upgrades").style.setProperty("visibility", "visible");
+        let upgrade = document.createElement("div");
+        upgrade.id = "typeO";
+        upgrade.onmouseover = showTypeO;
+        upgrade.onmouseout = hideDescription;
+        let label = document.createElement("p");
+        label.innerHTML = "TypeO Clones";
+        label.style.display = "inline";
+        let line = document.createElement("br");
+        let button = document.createElement("button");
+        button.innerHTML = "Buy";
+        button.id = "buyTypeO";
+        button.disabled = true;
+        button.onclick = buyTypeO;
+        let costLabel = document.createElement("span");
+        costLabel.innerHTML = "Cost:";
+        let cost = document.createElement("p");
+        cost.id = "typeOCost";
+        cost.innerHTML = displayNumber(500000000);
+        document.getElementById("upgrades").appendChild(upgrade);
+        document.getElementById("typeO").appendChild(label);
+        document.getElementById("typeO").appendChild(line);
+        document.getElementById("typeO").appendChild(button);
+        document.getElementById("typeO").appendChild(costLabel);
+        document.getElementById("typeO").appendChild(cost);
+    }
 }
+
+function setMax() {
+    document.getElementById("iClones").max = clones - pClones - hClones - oClones;
+    document.getElementById("pClones").max = clones - iClones - hClones - oClones;
+    document.getElementById("hClones").max = clones - iClones - pClones - oClones;
+    document.getElementById("oClones").max = clones - iClones - pClones - hClones;
+}
+
 
 
 
@@ -1368,6 +1745,7 @@ function save(a) {
     document.cookie = "hackers=" + hackers +"; expires=" + d.toUTCString() +";";
     document.cookie = "oracles=" + oracles +"; expires=" + d.toUTCString() +";";
     document.cookie = "robots=" + robots +"; expires=" + d.toUTCString() +";";
+    document.cookie = "clones=" + clones +"; expires=" + d.toUTCString() +";";
     document.cookie = "clicks=" + clicks +"; expires=" + d.toUTCString() + ";";
     document.cookie = "typewriter=" + typewriter +"; expires=" + d.toUTCString() + ";";
     document.cookie = "keyboard=" + keyboard +"; expires=" + d.toUTCString() + ";";
@@ -1391,6 +1769,12 @@ function save(a) {
     document.cookie = "tarot=" + tarot +"; expires=" + d.toUTCString() + ";";
     document.cookie = "runes=" + runes +"; expires=" + d.toUTCString() + ";";
     document.cookie = "tome=" + tome +"; expires=" + d.toUTCString() + ";";
+    document.cookie = "research=" + research +"; expires=" + d.toUTCString() + ";";
+    document.cookie = "clonetech=" + clonetech +"; expires=" + d.toUTCString() + ";";
+    document.cookie = "typeI=" + typeI +"; expires=" + d.toUTCString() + ";";
+    document.cookie = "typeP=" + typeP +"; expires=" + d.toUTCString() + ";";
+    document.cookie = "typeH=" + typeH +"; expires=" + d.toUTCString() + ";";
+    document.cookie = "typeO=" + typeO +"; expires=" + d.toUTCString() + ";";
     if(a === 1) {
         document.getElementById("saveText").style.setProperty("visibility", "visible");
         setTimeout(() => {
@@ -1423,6 +1807,10 @@ window.onload = function () {
         document.getElementById("robots").innerHTML = displayNumber(robots);
         robotCost = Math.round(100000 * Math.pow(1.05, robots));
         document.getElementById("robotCost").innerHTML = displayNumber(robotCost);
+        clones = Number(getCookie("clones"));
+        document.getElementById("clones").innerHTML = displayNumber(clones);
+        cloneCost = Math.round(2000000 * Math.pow(1.2, clones));
+        document.getElementById("cloneCost").innerHTML = displayNumber(cloneCost);
         clicks = Number(getCookie("clicks"));
         oldClicks = clicks;
         typewriter = Number(getCookie("typewriter"));
@@ -1447,6 +1835,12 @@ window.onload = function () {
         tarot = Number(getCookie("tarot"));
         runes = Number(getCookie("runes"));
         tome = Number(getCookie("tome"));
+        research = Number(getCookie("research"));
+        clonetech = getCookie("clonetech") === "true";
+        typeI = getCookie("typeI") === "true";
+        typeP = getCookie("typeP") === "true";
+        typeH = getCookie("typeH") === "true";
+        typeO = getCookie("typeO") === "true";
     }
     update();
 }
