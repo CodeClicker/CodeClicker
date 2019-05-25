@@ -101,13 +101,19 @@ button {
     margin: 0 0 20px 0;
 }
 .auto,
-#upgrades {
+#upgrades,
+#Cloning {
     visibility: hidden;
 }
 .auto {
     padding: 5px;
 }
-
+#Cloning {
+    position: absolute;
+    top: 875px;
+    left: 650px;
+    width: 25%;
+}
 #hideBox {
     position: absolute;
     width: 50px;
@@ -125,3 +131,7 @@ a:visited { text-decoration: none; color: blue; }
 a:hover { text-decoration: none; color: blue; }
 a:focus { text-decoration: none; color: blue; }
 a:hover, a:active { text-decoration: none; color: black; }
+
+li {
+    width: 75%;
+}
