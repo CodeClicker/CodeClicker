@@ -674,13 +674,13 @@ function yeet() {
     internCost = Math.round(10 * Math.pow(1.14, interns));
     document.getElementById("internCost").innerHTML = displayNumber(internCost);
     document.getElementById("programmers").innerHTML = displayNumber(programmers);
-    programmerCost = Math.round(10 * Math.pow(1.12, programmers));
+    programmerCost = Math.round(100 * Math.pow(1.12, programmers));
     document.getElementById("programmerCost").innerHTML = displayNumber(programmerCost);
     document.getElementById("hackers").innerHTML = displayNumber(hackers);
-    hackerCost = Math.round(10 * Math.pow(1.11, hackers));
+    hackerCost = Math.round(2000 * Math.pow(1.11, hackers));
     document.getElementById("hackerCost").innerHTML = displayNumber(hackerCost);
     document.getElementById("oracles").innerHTML = displayNumber(oracles);
-    oracleCost = Math.round(10 * Math.pow(1.18, oracles));
+    oracleCost = Math.round(15000 * Math.pow(1.18, oracles));
     document.getElementById("oracleCost").innerHTML = displayNumber(oracleCost);
     d1 = new Date();
 }
@@ -1915,7 +1915,5 @@ function light() {
 
 
 //STUFF TO DO
-//Add more upgrades
+//Add more research
 //make ending
-
-//If there is time, make autoautoclickerclicker?
