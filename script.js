@@ -459,22 +459,27 @@ let typeODescription = "TypeI Clones: Clones of the hackers. If you think about 
 let typeHDescription = "TypeI Clones: Clones of the oracles. Cloning their bodies is easy, but cloning their magic is a litlle bit harder. Require 10 CloneTech.";
 
 function showIntern() {
+    internDescription = "Interns: Interns need experience so they are willing to write code for you, but they aren't very good at it. Increases lines per second by " +  Number((0.1 * coffee * college * training * paycheck2).toFixed(1)) + ".";
     document.getElementById("description").innerHTML = internDescription;
     document.getElementById("description").style.setProperty("visibility", "visible");
 }
 function showProgrammer() {
+    programmerDescription = "Programmers: Programmers are reliable workers that can write code for you. Increases lines per second by " + 1 * paycheck * office * benefits * quantum + ".";
     document.getElementById("description").innerHTML = programmerDescription;
     document.getElementById("description").style.setProperty("visibility", "visible");
 }
 function showHacker() {
+    hackerDescription = "Hackers: Why would you ever write code when you can just steal it from others? Increases lines per seconds by " + 5 * goggles * russian * gloves * hackerman + ".";
     document.getElementById("description").innerHTML = hackerDescription;
     document.getElementById("description").style.setProperty("visibility", "visible");
 }
 function showOracle() {
+    oracleDescription = "Oracles: The oracles are mysterious people with ancient powers. They can gaze into the future and see code not yet written. Increases lines per second by " + 35 * ball * tarot * runes * tome + ".";
     document.getElementById("description").innerHTML = oracleDescription;
     document.getElementById("description").style.setProperty("visibility", "visible");
 }
 function showRobot() {
+    robotDescription = "Artificial Intelligence: A program designed to write programs. Genius. Increases lines per second by " + 400 * research + ".";
     document.getElementById("description").innerHTML = robotDescription;
     document.getElementById("description").style.setProperty("visibility", "visible");
 }
