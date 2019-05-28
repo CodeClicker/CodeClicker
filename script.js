@@ -677,7 +677,7 @@ function yeet() {
     programmerCost = Math.round(100 * Math.pow(1.12, programmers));
     document.getElementById("programmerCost").innerHTML = displayNumber(programmerCost);
     document.getElementById("hackers").innerHTML = displayNumber(hackers);
-    hackerCost = Math.round(2000 * Math.pow(1.11, hackers));
+    hackerCost = Math.round(2000 * Math.pow(1.1, hackers));
     document.getElementById("hackerCost").innerHTML = displayNumber(hackerCost);
     document.getElementById("oracles").innerHTML = displayNumber(oracles);
     oracleCost = Math.round(15000 * Math.pow(1.18, oracles));
